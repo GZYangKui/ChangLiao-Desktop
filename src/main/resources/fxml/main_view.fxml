@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.geometry.Insets?>
+<?import java.net.URL?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="cn.navigation.education.changliao.controller.MainPageController"
+            prefHeight="400.0" prefWidth="600.0">
+    <stylesheets>
+        <URL value="@../css/main_style.css"></URL>
+    </stylesheets>
+    <left>
+        <HBox>
+            <VBox styleClass="left_menu_bar" maxWidth="50" fx:id="leftBox">
+                <padding>
+                    <Insets>
+                        <top>10</top>
+                        <bottom>10</bottom>
+                    </Insets>
+                </padding>
+                <children>
+                    <VBox fx:id="leftBoxOne">
+                        <HBox alignment="CENTER">
+                            <padding>
+                                <Insets  top="5" right="5" bottom="5" left="5"/>
+                            </padding>
+                            <JFXButton>
+                                <tooltip>
+                                    <Tooltip text="聊天"/>
+                                </tooltip>
+                                <graphic>
+                                    <ImageView>
+                                        <image>
+                                            <Image url="@../assets/images/icon.png" requestedWidth="40" requestedHeight="40"/>
+                                        </image>
+                                    </ImageView>
+                                </graphic>
+                            </JFXButton>
+                        </HBox>
+                        <HBox alignment="CENTER" >
+                            <padding>
+                                <Insets top="5" right="5" left="5" bottom="5"/>
+                            </padding>
+                            <JFXButton>
+                                <tooltip>
+                                    <Tooltip text="聊天"/>
+                                </tooltip>
+                                <graphic>
+                                    <ImageView>
+                                        <image>
+                                            <Image url="@../assets/images/message.png" requestedWidth="40" requestedHeight="40"/>
+                                        </image>
+                                    </ImageView>
+                                </graphic>
+                            </JFXButton>
+                        </HBox>
+                        <HBox alignment="CENTER" >
+                            <padding>
+                                <Insets top="5" right="5" left="5" bottom="5"/>
+                            </padding>
+                            <JFXButton>
+                                <tooltip>
+                                    <Tooltip text="通讯录"/>
+                                </tooltip>
+                                <graphic>
+                                    <ImageView>
+                                        <image>
+                                            <Image url="@../assets/images/main_list.png" requestedWidth="40" requestedHeight="40"/>
+                                        </image>
+                                    </ImageView>
+                                </graphic>
+                            </JFXButton>
+                        </HBox>
+                        <HBox alignment="CENTER" >
+                            <padding>
+                                <Insets top="5" right="5" left="5" bottom="5"/>
+                            </padding>
+                            <JFXButton>
+                                <tooltip>
+                                    <Tooltip text="收藏"/>
+                                </tooltip>
+                                <graphic>
+                                    <ImageView>
+                                        <image>
+                                            <Image url="@../assets/images/application.png" requestedWidth="40" requestedHeight="40"/>
+                                        </image>
+                                    </ImageView>
+                                </graphic>
+                            </JFXButton>
+                        </HBox>
+                    </VBox>
+                    <VBox fx:id="leftBoxTwo" alignment="BOTTOM_CENTER">
+                        <HBox alignment="CENTER">
+                            <padding>
+                                <Insets top="5" right="5" left="5" bottom="5"/>
+                            </padding>
+                            <JFXButton>
+                                <tooltip>
+                                    <Tooltip text="更多"/>
+                                </tooltip>
+                                <graphic>
+                                    <ImageView>
+                                        <image>
+                                            <Image url="@../assets/images/setting.png" requestedWidth="40" requestedHeight="40"/>
+                                        </image>
+                                    </ImageView>
+                                </graphic>
+                            </JFXButton>
+                        </HBox>
+                    </VBox>
+
+                </children>
+            </VBox>
+            <VBox fx:id="leftContextBox" minWidth="250" styleClass="left_box-context">
+
+            </VBox>
+        </HBox>
+    </left>
+    <center>
+        <VBox BorderPane.alignment="TOP_CENTER" alignment="TOP_CENTER" styleClass="center_box">
+            <fx:include source="items/header.fxml" fx:id="windowTopBar"/>
+        </VBox>
+    </center>
+
+</BorderPane>
