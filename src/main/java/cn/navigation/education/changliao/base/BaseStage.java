@@ -30,7 +30,7 @@ public class BaseStage extends Stage {
         setScene(scene);
         initStyle(StageStyle.UNDECORATED);
 
-        getIcons().add(AssetLoader.loadAssetImage("icon.png"));
+        getIcons().add(AssetLoader.loadAssetImage("images/icon.png",200,200));
         setWidth(900);
         setHeight(600);
         show();

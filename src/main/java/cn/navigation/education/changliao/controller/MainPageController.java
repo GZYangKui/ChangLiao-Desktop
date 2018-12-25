@@ -63,7 +63,7 @@ public class MainPageController extends BaseController implements Initializable 
         minimize = (JFXButton) windowTopBar.lookup("#minimize");
         maximization = (JFXButton) windowTopBar.lookup("#maximization");
         pagination.getStyleClass().add(Pagination.STYLE_CLASS_BULLET);
-        pagination.setPageFactory(lists::get);
+        pagination.setPageFactory(e -> lists.get(e).getContent());
         lists.add(new MessageList());
         lists.add(new MailList());
         lists.add(new CollectionList());
@@ -76,14 +76,14 @@ public class MainPageController extends BaseController implements Initializable 
             System.exit(0);
         });
         minimize.setOnAction(e -> STAGE_CONTEXT.get(MainPage.class.getName()).setIconified(true));
-        maximization.setOnAction(e ->{
+        maximization.setOnAction(e -> {
             BaseStage stage = (BaseStage) STAGE_CONTEXT.get(MainPage.class.getName());
             stage.setWindowSize();
         });
 
-        chat.setOnAction(e->pagination.setCurrentPageIndex(0));
-        addressList.setOnAction(e->pagination.setCurrentPageIndex(1));
-        collection.setOnAction(e->pagination.setCurrentPageIndex(2));
+        chat.setOnAction(e -> pagination.setCurrentPageIndex(0));
+        addressList.setOnAction(e -> pagination.setCurrentPageIndex(1));
+        collection.setOnAction(e -> pagination.setCurrentPageIndex(2));
 
     }
 }
