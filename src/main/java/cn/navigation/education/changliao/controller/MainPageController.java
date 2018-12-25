@@ -4,6 +4,7 @@ package cn.navigation.education.changliao.controller;
 import cn.navigation.education.changliao.base.BaseController;
 import cn.navigation.education.changliao.base.BaseLeftContent;
 import cn.navigation.education.changliao.base.BaseStage;
+import cn.navigation.education.changliao.base.MainContentBase;
 import cn.navigation.education.changliao.component.CollectionList;
 import cn.navigation.education.changliao.component.MailList;
 import cn.navigation.education.changliao.component.MessageList;
@@ -47,6 +48,8 @@ public class MainPageController extends BaseController implements Initializable 
     private JFXButton addressList;
     @FXML
     private JFXButton collection;
+    @FXML
+    private VBox content;
 
     private List<BaseLeftContent> lists = new ArrayList<>();
 
@@ -69,6 +72,7 @@ public class MainPageController extends BaseController implements Initializable 
         lists.add(new MessageList());
         lists.add(new MailList());
         lists.add(new CollectionList());
+        content.prefHeightProperty().bind(leftBox.heightProperty());
 
     }
 
@@ -96,6 +100,18 @@ public class MainPageController extends BaseController implements Initializable 
 
     @Override
     public void initData(Object data) {
-        System.out.println(data);
+        lists.get(1).initData(data);
+    }
+
+    /**
+     * 设置内容取
+     * @param
+     */
+    public void setContent(MainContentBase base){
+        //移除内容面板
+        content.getChildren().remove(0,content.getChildren().size());
+        //添加新的内容
+        content.getChildren().add(base.getContent());
+
     }
 }

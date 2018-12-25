@@ -46,4 +46,6 @@ public abstract class BaseLeftContent {
     protected void customUi(){ }
 
     protected void loadData(){ }
+
+    public void initData(Object data){}
 }

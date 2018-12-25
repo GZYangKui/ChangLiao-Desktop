@@ -23,6 +23,7 @@ public class Constant {
     public static final String ID ="id";
     public static final String END ="\r\n";
     public static final String FRIENDS = "friends";
+    public static final String NICKNAME ="nickname";
 
 
 }

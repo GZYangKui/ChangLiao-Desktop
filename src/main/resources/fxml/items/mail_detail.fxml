@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<?import com.jfoenix.controls.JFXButton?>
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:id="container">
+    <center>
+        <VBox alignment="CENTER" spacing="50">
+            <HBox spacing="20" alignment="CENTER">
+                <VBox spacing="10">
+                    <HBox alignment="CENTER">
+                        <Text fx:id="nickName" text="昵称"></Text>
+                    </HBox>
+                    <HBox alignment="CENTER">
+                        <Text fx:id="mark" text="备注"></Text>
+                    </HBox>
+                    <HBox alignment="CENTER">
+                        <Text fx:id="area" text="地区"></Text>
+                    </HBox>
+                    <HBox alignment="CENTER">
+                        <Text fx:id="id" text="畅聊ID"></Text>
+                    </HBox>
+                    <HBox alignment="CENTER">
+                        <Text fx:id="source" text="来源"></Text>
+                    </HBox>
+                </VBox>
+                <!--头像-->
+                <VBox alignment="CENTER">
+                    <ImageView fx:id="head">
+                        <image>
+                            <Image url="@../../assets/images/header.jpg" requestedHeight="100" requestedWidth="100"/>
+                        </image>
+                    </ImageView>
+                </VBox>
+            </HBox>
+            <HBox alignment="CENTER">
+                <JFXButton fx:id="sendMessage" text="发送消息" style="-fx-background-color: #129611;-fx-text-fill: white"
+                           prefWidth="200" prefHeight="40"/>
+            </HBox>
+        </VBox>
+    </center>
+
+</BorderPane>
