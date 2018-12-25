@@ -1,12 +1,17 @@
 package cn.navigation.education.changliao.handler;
 
+import cn.navigation.education.changliao.base.BaseController;
+import cn.navigation.education.changliao.controller.LoginController;
 import io.vertx.core.AbstractVerticle;
+import io.vertx.core.buffer.Buffer;
 import io.vertx.core.eventbus.Message;
 import io.vertx.core.json.JsonObject;
 import io.vertx.core.net.NetClient;
 import io.vertx.core.net.NetClientOptions;
 import io.vertx.core.net.NetSocket;
+import javafx.application.Platform;
 
+import static cn.navigation.education.changliao.base.BaseController.CONTEXT;
 import static cn.navigation.education.changliao.config.Constant.*;
 
 
@@ -65,25 +70,37 @@ public class ServerHandler extends AbstractVerticle {
             if (!ar.succeeded()) {
                 return;
             }
-
             socket = ar.result();
-            socket.handler(b -> {
-                var resp = b.toJsonObject();
-                System.out.println(resp);
-                System.out.println("hello");
-            });
+            socket.handler(this::handler);
             socket.exceptionHandler(e -> {
                 System.out.println("连接断开:" + e.getMessage());
             });
 
         });
 
+    }
+
+    /**
+     * 处理服务器返回来的数据
+     *
+     * @param buffer
+     */
+    private void handler(Buffer buffer) {
+        var data = buffer.toJsonObject();
+        var type = data.getString(TYPE);
+        var subtype = data.getString(SUBTYPE);
+        //将数据转发到登陆界面中去
+        if (type.equals(USER) && subtype.equals(LOGIN)) {
+            BaseController login = CONTEXT.get(LoginController.class.getName());
+            Platform.runLater(() -> login.updateUi(data));
+            return;
+        }
 
     }
 
     public void writerMessage(JsonObject msg) {
         if (socket != null) {
-            socket.write(msg.toBuffer());
+            socket.write(msg.toBuffer().appendString(END));
         }
     }
 }

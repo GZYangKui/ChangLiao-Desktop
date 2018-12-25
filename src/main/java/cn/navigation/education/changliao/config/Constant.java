@@ -21,6 +21,8 @@ public class Constant {
     public static final String CURRENT_CURSION ="0.2";
     public static final String USER = "user";
     public static final String ID ="id";
+    public static final String END ="\r\n";
+    public static final String FRIENDS = "friends";
 
 
 }

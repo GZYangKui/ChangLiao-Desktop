@@ -9,6 +9,7 @@ import cn.navigation.education.changliao.component.MailList;
 import cn.navigation.education.changliao.component.MessageList;
 import cn.navigation.education.changliao.pages.MainPage;
 import com.jfoenix.controls.JFXButton;
+import io.vertx.core.json.JsonObject;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -86,5 +87,15 @@ public class MainPageController extends BaseController implements Initializable 
         addressList.setOnAction(e -> pagination.setCurrentPageIndex(1));
         collection.setOnAction(e -> pagination.setCurrentPageIndex(2));
 
+    }
+
+    @Override
+    public void updateUi(JsonObject data) {
+
+    }
+
+    @Override
+    public void initData(Object data) {
+        System.out.println(data);
     }
 }

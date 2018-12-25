@@ -10,6 +10,7 @@ import com.jfoenix.controls.JFXButton;
 import io.vertx.core.json.JsonObject;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
@@ -19,6 +20,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
+import javafx.stage.WindowEvent;
 import org.controlsfx.control.Notifications;
 
 import java.net.URL;
@@ -74,7 +76,7 @@ public class LoginController extends BaseController implements Initializable {
     private BorderPane pageFactory(int index) {
         if (index == 0) {
             return QRCodeLoginPane;
-        }else{
+        } else {
             return accountLogin;
         }
     }
@@ -91,29 +93,42 @@ public class LoginController extends BaseController implements Initializable {
         /**
          * 切换到账号登陆
          */
-        switchLogin.setOnAction(e->pagination.setCurrentPageIndex(1));
+        switchLogin.setOnAction(e -> pagination.setCurrentPageIndex(1));
         loginAction.setOnAction(this::login);
 
     }
-    private void login(ActionEvent e){
-        if (userName.getText().trim().equals("")){
+
+    private void login(ActionEvent e) {
+        if (userName.getText().trim().equals("")) {
             Notifications.create().position(Pos.TOP_CENTER).text("用户名不能为空!").showWarning();
             return;
         }
-        if (password.getText().trim().equals("")){
+        if (password.getText().trim().equals("")) {
             Notifications.create().position(Pos.TOP_CENTER).text("密码不能为空!").showWarning();
             return;
         }
         var data = new JsonObject();
-        data.put(TYPE,ACCOUNT);
-        data.put(SUBTYPE,LOGIN);
+        data.put(TYPE, ACCOUNT);
+        data.put(SUBTYPE, LOGIN);
         data.put(PASSWORD, StringUtils.toMd5(password.getText()));
-        data.put(USERNAME,userName.getText());
-        vertx.eventBus().send(ServerHandler.class.getName(),data, res->{
-
-        });
-        new MainPage();
+        data.put(USERNAME, userName.getText());
+        vertx.eventBus().send(ServerHandler.class.getName(), data);
     }
 
+
+    @Override
+    public void updateUi(JsonObject data) {
+        var login = data.getBoolean(LOGIN);
+        if (login) {
+            close.getScene().getWindow().fireEvent(new Event(WindowEvent.WINDOW_CLOSE_REQUEST));
+            //好友列表
+            var friend = new JsonObject().put(FRIENDS, data.getJsonArray(FRIENDS));
+            //跳转到主页面
+            new MainPage(friend);
+            return;
+        }
+        Notifications.create().position(Pos.CENTER).text("登陆失败,请检查用户名/密码").showInformation();
+
+    }
 
 }
