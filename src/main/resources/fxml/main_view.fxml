@@ -31,7 +31,7 @@
                     <VBox fx:id="leftBoxOne">
                         <HBox alignment="CENTER">
                             <padding>
-                                <Insets  top="5" right="5" bottom="5" left="5"/>
+                                <Insets top="5" right="5" bottom="5" left="5"/>
                             </padding>
                             <JFXButton>
                                 <tooltip>
@@ -40,13 +40,14 @@
                                 <graphic>
                                     <ImageView>
                                         <image>
-                                            <Image url="@../assets/images/icon.png" requestedWidth="40" requestedHeight="40"/>
+                                            <Image url="@../assets/images/header.jpg" requestedWidth="40"
+                                                   requestedHeight="40"/>
                                         </image>
                                     </ImageView>
                                 </graphic>
                             </JFXButton>
                         </HBox>
-                        <HBox alignment="CENTER" >
+                        <HBox alignment="CENTER">
                             <padding>
                                 <Insets top="5" right="5" left="5" bottom="5"/>
                             </padding>
@@ -57,13 +58,14 @@
                                 <graphic>
                                     <ImageView>
                                         <image>
-                                            <Image url="@../assets/images/message.png" requestedWidth="40" requestedHeight="40"/>
+                                            <Image url="@../assets/images/message.png" requestedWidth="40"
+                                                   requestedHeight="40"/>
                                         </image>
                                     </ImageView>
                                 </graphic>
                             </JFXButton>
                         </HBox>
-                        <HBox alignment="CENTER" >
+                        <HBox alignment="CENTER">
                             <padding>
                                 <Insets top="5" right="5" left="5" bottom="5"/>
                             </padding>
@@ -74,7 +76,8 @@
                                 <graphic>
                                     <ImageView>
                                         <image>
-                                            <Image url="@../assets/images/main_list.png" requestedWidth="40" requestedHeight="40"/>
+                                            <Image url="@../assets/images/main_list.png" requestedWidth="40"
+                                                   requestedHeight="40"/>
                                         </image>
                                     </ImageView>
                                 </graphic>
@@ -84,14 +87,15 @@
                             <padding>
                                 <Insets top="5" right="5" left="5" bottom="5"/>
                             </padding>
-                            <JFXButton fx:id="collection" >
+                            <JFXButton fx:id="collection">
                                 <tooltip>
                                     <Tooltip text="收藏"/>
                                 </tooltip>
                                 <graphic>
                                     <ImageView>
                                         <image>
-                                            <Image url="@../assets/images/application.png" requestedWidth="40" requestedHeight="40"/>
+                                            <Image url="@../assets/images/application.png" requestedWidth="40"
+                                                   requestedHeight="40"/>
                                         </image>
                                     </ImageView>
                                 </graphic>
@@ -110,7 +114,8 @@
                                 <graphic>
                                     <ImageView>
                                         <image>
-                                            <Image url="@../assets/images/setting.png" requestedWidth="40" requestedHeight="40"/>
+                                            <Image url="@../assets/images/setting.png" requestedWidth="40"
+                                                   requestedHeight="40"/>
                                         </image>
                                     </ImageView>
                                 </graphic>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<?import javafx.scene.layout.*?>
+
+<?import com.jfoenix.controls.JFXListView?>
+<?import javafx.scene.control.TextField?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<?import java.net.URL?>
+<?import javafx.scene.control.Tooltip?>
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:id="container">
+    <stylesheets>
+        <URL value="@../../css/message_address_style.css"></URL>
+    </stylesheets>
+    <top>
+        <HBox alignment="CENTER" fx:id="topBox" spacing="10" styleClass="item">
+            <padding>
+                <Insets top="10" right="5" bottom="10" left="5"/>
+            </padding>
+
+            <children>
+                <TextField fx:id="input" styleClass="input"></TextField>
+                <JFXButton fx:id="search" styleClass="input">
+                    <tooltip>
+                        <Tooltip text="发起群聊"/>
+                    </tooltip>
+                    <graphic>
+                        <ImageView>
+                            <image>
+                                <Image url="@../../assets/images/add.png" requestedHeight="20" requestedWidth="20"/>
+                            </image>
+                        </ImageView>
+                    </graphic>
+                </JFXButton>
+            </children>
+        </HBox>
+    </top>
+    <center>
+        <JFXListView fx:id="contentList" styleClass="item"></JFXListView>
+    </center>
+
+</BorderPane>
