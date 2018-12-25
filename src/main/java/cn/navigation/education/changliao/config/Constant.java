@@ -11,6 +11,11 @@ public class Constant {
     public static final String HTTP_PORT = "http_port";
     public static final String TCP_ORT = "tcp_port";
     public static final String LOGIN = "login";
-    public static final String LOGIN_url ="/user/login";
+    public static final String LOGIN_URL ="/user/login";
+    public static final String TYPE = "type";
+    public static final String SUBTYPE = "subtype";
+    public static final String ACCOUNT = "account";
+    public static final String USERNAME = "userName";
+    public static final String PASSWORD ="password";
 
 }

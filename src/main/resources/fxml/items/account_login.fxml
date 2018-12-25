@@ -1,14 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
+<?import com.jfoenix.controls.JFXButton?>
+<?import java.net.URL?>
 <BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             prefHeight="400.0" prefWidth="600.0"
             fx:id="container">
+    <stylesheets>
+        <URL value="@../../css/login_style.css"></URL>
+    </stylesheets>
+    <center>
+        <VBox alignment="CENTER" spacing="10">
+            <children>
+                <HBox alignment="CENTER" spacing="10">
+                    <Label text="用户名" styleClass="user_information"></Label>
+                    <TextField fx:id="userName"></TextField>
+                </HBox>
+                <HBox alignment="CENTER" spacing="10">
+                    <Label text="用户名" styleClass="user_information"></Label>
+                    <PasswordField fx:id="password"></PasswordField>
+                </HBox>
+                <HBox alignment="CENTER">
+                    <JFXButton text="登陆" styleClass="login_action" fx:id="loginAction"></JFXButton>
+                </HBox>
+            </children>
+        </VBox>
+    </center>
 
 </BorderPane>
