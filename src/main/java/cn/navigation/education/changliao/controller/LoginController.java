@@ -1,4 +1,4 @@
-package cn.navigation.education.changliao.verticle;
+package cn.navigation.education.changliao.controller;
 
 import cn.navigation.education.changliao.base.BaseVerticle;
 import cn.navigation.education.changliao.handler.ServerHandler;
@@ -27,7 +27,7 @@ import java.util.ResourceBundle;
 import static cn.navigation.education.changliao.base.BaseStage.STAGE_CONTEXT;
 import static cn.navigation.education.changliao.config.Constant.*;
 
-public class LoginVerticle extends BaseVerticle implements Initializable {
+public class LoginController extends BaseVerticle implements Initializable {
     @FXML
     private HBox topBox;
     @FXML

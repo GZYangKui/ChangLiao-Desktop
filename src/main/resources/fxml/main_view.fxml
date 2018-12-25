@@ -10,7 +10,7 @@
 <?import javafx.scene.image.Image?>
 <BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            fx:controller="cn.navigation.education.changliao.verticle.MainPageVerticle"
+            fx:controller="cn.navigation.education.changliao.controller.MainPageController"
             prefHeight="400.0" prefWidth="600.0">
     <stylesheets>
         <URL value="@../css/main_style.css"></URL>

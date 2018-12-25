@@ -4,12 +4,14 @@ import io.vertx.core.AbstractVerticle;
 import io.vertx.core.eventbus.Message;
 import io.vertx.core.json.JsonObject;
 import io.vertx.core.net.NetClient;
+import io.vertx.core.net.NetSocket;
 
 import static cn.navigation.education.changliao.config.Constant.*;
 
 
 public class ServerHandler extends AbstractVerticle {
     private NetClient netClient;
+    private NetSocket socket;
 
     @Override
     public void start() throws Exception {
@@ -43,6 +45,7 @@ public class ServerHandler extends AbstractVerticle {
                 .put(ID, data.getString(USERNAME))
                 .put(PASSWORD, data.getString(PASSWORD))
                 .put(VERSION, CURRENT_CURSION);
+        writer(data);
 
     }
 
@@ -53,11 +56,23 @@ public class ServerHandler extends AbstractVerticle {
                 System.out.println("连接服务器失败:" + ar.cause().getMessage());
                 return;
             }
-            ar.result().handler(message -> {
-
+            socket = ar.result();
+            socket.handler(b -> {
+                var resp = b.toJsonObject();
+                System.out.println(b);
             });
+            socket.exceptionHandler(e -> {
+                System.out.println("连接断开:" + e.getMessage());
+            });
+
         });
 
 
+    }
+
+    public void writer(JsonObject msg) {
+        if (socket != null) {
+            socket.end(msg.toBuffer());
+        }
     }
 }

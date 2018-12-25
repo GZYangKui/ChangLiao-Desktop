@@ -5,10 +5,10 @@ import io.vertx.core.AbstractVerticle;
 import java.util.Map;
 import java.util.WeakHashMap;
 
-public class BaseVerticle extends AbstractVerticle {
-    public final static Map<String, BaseVerticle> CONTEXT = new WeakHashMap<>();
+public class BaseController extends AbstractVerticle {
+    public final static Map<String, BaseController> CONTEXT = new WeakHashMap<>();
 
-    public BaseVerticle() {
+    public BaseController() {
         CONTEXT.put(this.getClass().getName(),this);
     }
 

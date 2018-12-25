@@ -1,4 +1,4 @@
-package cn.navigation.education.changliao.verticle;
+package cn.navigation.education.changliao.controller;
 
 import cn.navigation.education.changliao.base.BaseVerticle;
 import cn.navigation.education.changliao.base.BaseLeftContent;
@@ -22,7 +22,7 @@ import java.util.ResourceBundle;
 
 import static cn.navigation.education.changliao.base.BaseStage.STAGE_CONTEXT;
 
-public class MainPageVerticle extends BaseVerticle implements Initializable {
+public class MainPageController extends BaseVerticle implements Initializable {
     @FXML
     private VBox leftBox;
     @FXML
