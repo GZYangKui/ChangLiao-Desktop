@@ -11,7 +11,7 @@
       alignment="CENTER_RIGHT"
       spacing="10">
     <padding>
-        <Insets right="10"/>
+        <Insets right="10" top="5"/>
     </padding>
     <children>
         <JFXButton fx:id="minimize">
