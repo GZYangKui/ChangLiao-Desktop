@@ -15,6 +15,13 @@ import java.util.WeakHashMap;
 public class BaseStage extends Stage {
     public Scene scene;
     private boolean isMaxinize = false;
+//    private double oldStageX;
+//
+//    private double oldStageY;
+//
+//    private double oldScreenX;
+//
+//    private double oldScreenY;
 
     public final static Map<String, Stage> STAGE_CONTEXT = new WeakHashMap<>();
 
@@ -28,12 +35,14 @@ public class BaseStage extends Stage {
         }
         scene = new Scene(root);
         setScene(scene);
+        setTitle("畅聊");
         initStyle(StageStyle.UNDECORATED);
 
-        getIcons().add(AssetLoader.loadAssetImage("images/icon.png",200,200));
+        getIcons().add(AssetLoader.loadAssetImage("images/icon.png", 200, 200));
         setWidth(900);
         setHeight(600);
         show();
+//        setWindowDrag();
     }
 
     /**
@@ -52,4 +61,27 @@ public class BaseStage extends Stage {
         isMaxinize = !isMaxinize;
     }
 
+//    /**
+//     * 设置窗体拖动
+//     */
+//    private void setWindowDrag() {
+//        EventHandler handler = this;
+//        scene.setOnMousePressed(handler);
+//        scene.setOnMouseDragOver(handler);
+//    }
+//
+//    @Override
+//    public void handle(MouseEvent e) {
+//        System.out.println(e.getY());
+//        if (e.getEventType() == MouseEvent.MOUSE_PRESSED) {    //鼠标按下的事件
+//            this.oldStageX = this.getX();
+//            this.oldStageY = this.getY();
+//            this.oldScreenX = e.getScreenX();
+//            this.oldScreenY = e.getScreenY();
+//        } else if (e.getEventType() == MouseEvent.MOUSE_MOVED) {
+//            this.setX(e.getScreenX() - this.oldScreenX + this.oldStageX);
+//            this.setY(e.getScreenY() - this.oldScreenY + this.oldStageY);
+//        }
+//
+//    }
 }

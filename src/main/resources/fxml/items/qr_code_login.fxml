@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:id="container">
+    <center>
+        <VBox alignment="CENTER" spacing="10">
+            <children>
+                <ImageView>
+                    <image>
+                        <Image url="@../../assets/images/login.png" requestedWidth="200" requestedHeight="200"/>
+                    </image>
+                </ImageView>
+               <HBox alignment="CENTER">
+                   <Hyperlink text="切换到账号登陆" fx:id="switchLogin"></Hyperlink>
+               </HBox>
+            </children>
+        </VBox>
+    </center>
+
+</BorderPane>

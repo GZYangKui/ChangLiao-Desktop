@@ -1,0 +1,15 @@
+.bullet {
+
+}
+
+.pagination {
+
+}
+
+
+.pagination .pagination-control {
+    visibility: hidden;
+}
+.title{
+    -fx-font-size: 20px;
+}
