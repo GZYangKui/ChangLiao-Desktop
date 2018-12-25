@@ -4,9 +4,9 @@ import io.vertx.core.json.JsonObject;
 
 public class Constant {
     public static final JsonObject VERTICLE_CONFIG = new JsonObject()
-            .put("server", "http://polyglot.net.cn")
+            .put("server", "polyglot.net.cn")
             .put("http_port", 80)
-            .put("tcp_port", 3306);
+            .put("tcp_port", 7373);
     public static final String SERVER = "server";
     public static final String HTTP_PORT = "http_port";
     public static final String TCP_ORT = "tcp_port";
@@ -17,5 +17,10 @@ public class Constant {
     public static final String ACCOUNT = "account";
     public static final String USERNAME = "userName";
     public static final String PASSWORD ="password";
+    public static final String VERSION ="version";
+    public static final String CURRENT_CURSION ="0.2";
+    public static final String USER = "user";
+    public static final String ID ="id";
+
 
 }

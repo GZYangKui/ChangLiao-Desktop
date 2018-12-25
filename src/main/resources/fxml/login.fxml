@@ -8,7 +8,7 @@
 <?import java.net.URL?>
 <BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            fx:controller="cn.navigation.education.changliao.controller.LoginController">
+            fx:controller="cn.navigation.education.changliao.verticle.LoginVerticle">
     <stylesheets>
         <URL value="@../css/login_style.css"></URL>
     </stylesheets>

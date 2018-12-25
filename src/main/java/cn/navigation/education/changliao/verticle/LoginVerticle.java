@@ -1,8 +1,9 @@
-package cn.navigation.education.changliao.controller;
+package cn.navigation.education.changliao.verticle;
 
-import cn.navigation.education.changliao.base.BaseController;
+import cn.navigation.education.changliao.base.BaseVerticle;
 import cn.navigation.education.changliao.handler.ServerHandler;
 import cn.navigation.education.changliao.pages.Login;
+import cn.navigation.education.changliao.pages.MainPage;
 import cn.navigation.education.changliao.tool.AssetLoader;
 import cn.navigation.education.changliao.utils.StringUtils;
 import com.jfoenix.controls.JFXButton;
@@ -24,10 +25,9 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import static cn.navigation.education.changliao.base.BaseStage.STAGE_CONTEXT;
-import static cn.navigation.education.changliao.MainVerticle.vertx;
 import static cn.navigation.education.changliao.config.Constant.*;
 
-public class LoginController extends BaseController implements Initializable {
+public class LoginVerticle extends BaseVerticle implements Initializable {
     @FXML
     private HBox topBox;
     @FXML
@@ -109,6 +109,14 @@ public class LoginController extends BaseController implements Initializable {
         data.put(PASSWORD, StringUtils.toMd5(password.getText()));
         data.put(USERNAME,userName.getText());
         vertx.eventBus().send(ServerHandler.class.getName(),data, res->{
+
+        });
+        new MainPage();
+    }
+
+    @Override
+    public void start() throws Exception {
+        vertx.eventBus().consumer(this.getClass().getName(),event -> {
 
         });
     }
