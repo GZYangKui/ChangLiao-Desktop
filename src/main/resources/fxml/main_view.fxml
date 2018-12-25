@@ -35,7 +35,7 @@
                             </padding>
                             <JFXButton>
                                 <tooltip>
-                                    <Tooltip text="聊天"/>
+                                    <Tooltip text="骄阳似火"/>
                                 </tooltip>
                                 <graphic>
                                     <ImageView>
@@ -50,7 +50,7 @@
                             <padding>
                                 <Insets top="5" right="5" left="5" bottom="5"/>
                             </padding>
-                            <JFXButton>
+                            <JFXButton fx:id="chat">
                                 <tooltip>
                                     <Tooltip text="聊天"/>
                                 </tooltip>
@@ -67,7 +67,7 @@
                             <padding>
                                 <Insets top="5" right="5" left="5" bottom="5"/>
                             </padding>
-                            <JFXButton>
+                            <JFXButton fx:id="addressList">
                                 <tooltip>
                                     <Tooltip text="通讯录"/>
                                 </tooltip>
@@ -80,11 +80,11 @@
                                 </graphic>
                             </JFXButton>
                         </HBox>
-                        <HBox alignment="CENTER" >
+                        <HBox alignment="CENTER">
                             <padding>
                                 <Insets top="5" right="5" left="5" bottom="5"/>
                             </padding>
-                            <JFXButton>
+                            <JFXButton fx:id="collection" >
                                 <tooltip>
                                     <Tooltip text="收藏"/>
                                 </tooltip>
@@ -121,6 +121,9 @@
                 </children>
             </VBox>
             <VBox fx:id="leftContextBox" minWidth="250" styleClass="left_box-context">
+                <Pagination pageCount="3" fx:id="pagination">
+
+                </Pagination>
 
             </VBox>
         </HBox>
