@@ -1,6 +1,6 @@
 package cn.navigation.education.changliao.controller;
 
-import cn.navigation.education.changliao.base.BaseVerticle;
+import cn.navigation.education.changliao.base.BaseController;
 import cn.navigation.education.changliao.handler.ServerHandler;
 import cn.navigation.education.changliao.pages.Login;
 import cn.navigation.education.changliao.pages.MainPage;
@@ -26,8 +26,9 @@ import java.util.ResourceBundle;
 
 import static cn.navigation.education.changliao.base.BaseStage.STAGE_CONTEXT;
 import static cn.navigation.education.changliao.config.Constant.*;
+import static cn.navigation.education.changliao.MainVerticle.vertx;
 
-public class LoginController extends BaseVerticle implements Initializable {
+public class LoginController extends BaseController implements Initializable {
     @FXML
     private HBox topBox;
     @FXML
@@ -114,10 +115,5 @@ public class LoginController extends BaseVerticle implements Initializable {
         new MainPage();
     }
 
-    @Override
-    public void start() throws Exception {
-        vertx.eventBus().consumer(this.getClass().getName(),event -> {
 
-        });
-    }
 }

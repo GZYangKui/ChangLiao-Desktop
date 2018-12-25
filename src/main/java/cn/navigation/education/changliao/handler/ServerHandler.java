@@ -4,6 +4,7 @@ import io.vertx.core.AbstractVerticle;
 import io.vertx.core.eventbus.Message;
 import io.vertx.core.json.JsonObject;
 import io.vertx.core.net.NetClient;
+import io.vertx.core.net.NetClientOptions;
 import io.vertx.core.net.NetSocket;
 
 import static cn.navigation.education.changliao.config.Constant.*;
@@ -45,21 +46,31 @@ public class ServerHandler extends AbstractVerticle {
                 .put(ID, data.getString(USERNAME))
                 .put(PASSWORD, data.getString(PASSWORD))
                 .put(VERSION, CURRENT_CURSION);
-        writer(data);
+        writerMessage(data);
 
     }
 
     private void initNetClient() {
-        netClient = vertx.createNetClient();
+        //设置10s超时
+        NetClientOptions options = new NetClientOptions()
+                //连接超时
+                .setConnectTimeout(10000)
+                //设置重连次数
+                .setReconnectAttempts(10)
+
+                .setLogActivity(true);
+
+        netClient = vertx.createNetClient(options);
         netClient.connect(config().getInteger(TCP_ORT), config().getString(SERVER), ar -> {
             if (!ar.succeeded()) {
-                System.out.println("连接服务器失败:" + ar.cause().getMessage());
                 return;
             }
+
             socket = ar.result();
             socket.handler(b -> {
                 var resp = b.toJsonObject();
-                System.out.println(b);
+                System.out.println(resp);
+                System.out.println("hello");
             });
             socket.exceptionHandler(e -> {
                 System.out.println("连接断开:" + e.getMessage());
@@ -70,9 +81,9 @@ public class ServerHandler extends AbstractVerticle {
 
     }
 
-    public void writer(JsonObject msg) {
+    public void writerMessage(JsonObject msg) {
         if (socket != null) {
-            socket.end(msg.toBuffer());
+            socket.write(msg.toBuffer());
         }
     }
 }
