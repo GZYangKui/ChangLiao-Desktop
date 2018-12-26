@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import com.jfoenix.controls.JFXListView?>
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:id="container" style="-fx-background-color: red">
+    <stylesheets>
+        <URL value="@../../css/chat_dialog_style.css"></URL>
+    </stylesheets>
+    <top>
+        <VBox fx:id="topBox" styleClass="message_box">
+            <HBox>
+                <padding>
+                    <Insets top="10" left="10" right="10" bottom="10"/>
+                </padding>
+                <Label fx:id="nickName" styleClass="title"></Label>
+            </HBox>
+            <Separator/>
+        </VBox>
+    </top>
+    <center>
+        <JFXListView styleClass="message_box" fx:id="messageDialog"></JFXListView>
+    </center>
+    <bottom>
+        <VBox fx:id="inputBox" styleClass="input" minHeight="150">
+            <HBox>
+                <HBox fx:id="bottomActionLeft" spacing="10">
+                    <children>
+                        <JFXButton fx:id="expression">
+                            <graphic>
+                                <ImageView>
+                                    <image>
+                                        <Image url="@../../assets/images/expression.png" requestedWidth="20"
+                                               requestedHeight="20"/>
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                        </JFXButton>
+                        <JFXButton fx:id="file">
+                            <graphic>
+                                <ImageView>
+                                    <image>
+                                        <Image url="@../../assets/images/file.png" requestedWidth="20"
+                                               requestedHeight="20"/>
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                        </JFXButton>
+                        <JFXButton fx:id="chat_record">
+                            <graphic>
+                                <ImageView>
+                                    <image>
+                                        <Image url="@../../assets/images/chat_recond.png" requestedWidth="20"
+                                               requestedHeight="20"/>
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                        </JFXButton>
+                    </children>
+                </HBox>
+                <HBox fx:id="bottomActionRight" alignment="CENTER_RIGHT" spacing="10">
+                    <JFXButton fx:id="phone">
+                        <graphic>
+                            <ImageView>
+                                <image>
+                                    <Image url="@../../assets/images/phone.png" requestedWidth="20"
+                                           requestedHeight="20"/>
+                                </image>
+                            </ImageView>
+                        </graphic>
+                    </JFXButton>
+                    <JFXButton fx:id="video">
+                        <graphic>
+                            <ImageView>
+                                <image>
+                                    <Image url="@../../assets/images/video.png" requestedWidth="20"
+                                           requestedHeight="20"/>
+                                </image>
+                            </ImageView>
+                        </graphic>
+                    </JFXButton>
+                </HBox>
+            </HBox>
+            <TextArea styleClass="input">
+
+            </TextArea>
+            <HBox alignment="CENTER_RIGHT">
+                <padding>
+                    <Insets right="20" bottom="10"/>
+                </padding>
+                <JFXButton styleClass="action" text="发送(S)"/>
+            </HBox>
+        </VBox>
+    </bottom>
+
+</BorderPane>

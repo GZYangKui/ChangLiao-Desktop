@@ -12,7 +12,7 @@ import java.io.IOException;
 import java.util.Map;
 import java.util.WeakHashMap;
 
-public class BaseStage extends Stage {
+public abstract class BaseStage extends Stage {
     public Scene scene;
     private boolean isMaxinize = false;
 //    private double oldStageX;

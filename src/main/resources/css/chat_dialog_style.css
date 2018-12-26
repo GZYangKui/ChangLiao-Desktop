@@ -1,0 +1,24 @@
+.message_box {
+    -fx-background-color: #F5F5F5;
+}
+
+.input {
+    -fx-background-color: #FFFFFF;
+}
+
+.title {
+    -fx-font-size: 20px;
+}
+
+.action {
+    -fx-border-width: 1px;
+    -fx-border-color: #F5F5F5;
+    -fx-pref-width: 80px;
+    -fx-pref-height: 30px;
+    -fx-font-size: 16px;
+    -fx-wrap-text: true;
+}
+
+.action:hover {
+    -fx-background-color: #129611;
+}

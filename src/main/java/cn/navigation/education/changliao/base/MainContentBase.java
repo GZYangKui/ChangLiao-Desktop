@@ -15,4 +15,5 @@ public abstract class MainContentBase {
     public BorderPane getContent() {
         return container;
     }
+
 }

@@ -110,6 +110,8 @@ public class MainPageController extends BaseController implements Initializable 
     public void setContent(MainContentBase base){
         //移除内容面板
         content.getChildren().remove(0,content.getChildren().size());
+        //将新面板的高度绑定
+        base.getContent().prefHeightProperty().bind(leftBox.heightProperty());
         //添加新的内容
         content.getChildren().add(base.getContent());
 
