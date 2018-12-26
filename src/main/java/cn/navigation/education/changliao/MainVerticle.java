@@ -1,6 +1,7 @@
 package cn.navigation.education.changliao;
 
-import cn.navigation.education.changliao.handler.ServerHandler;
+import cn.navigation.education.changliao.handler.HttpHandler;
+import cn.navigation.education.changliao.handler.TcpHandler;
 import cn.navigation.education.changliao.pages.Login;
 import io.vertx.core.DeploymentOptions;
 import io.vertx.core.Vertx;
@@ -23,7 +24,8 @@ public class MainVerticle {
 
     public void deploymentVertical() {
         var options = new DeploymentOptions().setConfig(VERTICLE_CONFIG);
-        vertx.deployVerticle(new ServerHandler(), options);
+        vertx.deployVerticle(new TcpHandler(), options);
+        vertx.deployVerticle(new HttpHandler(),options);
     }
 
     static public void main(String... args) { new MainVerticle(); }

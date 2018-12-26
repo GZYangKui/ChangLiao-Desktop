@@ -1,7 +1,7 @@
 package cn.navigation.education.changliao.controller;
 
 import cn.navigation.education.changliao.base.BaseController;
-import cn.navigation.education.changliao.handler.ServerHandler;
+import cn.navigation.education.changliao.handler.TcpHandler;
 import cn.navigation.education.changliao.pages.Login;
 import cn.navigation.education.changliao.pages.MainPage;
 import cn.navigation.education.changliao.tool.AssetLoader;
@@ -112,7 +112,7 @@ public class LoginController extends BaseController implements Initializable {
         data.put(SUBTYPE, LOGIN);
         data.put(PASSWORD, StringUtils.toMd5(password.getText()));
         data.put(USERNAME, userName.getText());
-        vertx.eventBus().send(ServerHandler.class.getName(), data);
+        vertx.eventBus().send(TcpHandler.class.getName(), data);
     }
 
 

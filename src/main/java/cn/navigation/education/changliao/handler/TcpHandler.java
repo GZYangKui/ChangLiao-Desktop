@@ -15,7 +15,7 @@ import static cn.navigation.education.changliao.base.BaseController.CONTEXT;
 import static cn.navigation.education.changliao.config.Constant.*;
 
 
-public class ServerHandler extends AbstractVerticle {
+public class TcpHandler extends AbstractVerticle {
     private NetClient netClient;
     private NetSocket socket;
 
