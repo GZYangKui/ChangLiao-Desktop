@@ -35,6 +35,9 @@
                 <HBox fx:id="bottomActionLeft" spacing="10">
                     <children>
                         <JFXButton fx:id="expression">
+                            <tooltip>
+                                <Tooltip text="表情"/>
+                            </tooltip>
                             <graphic>
                                 <ImageView>
                                     <image>
@@ -45,6 +48,9 @@
                             </graphic>
                         </JFXButton>
                         <JFXButton fx:id="file">
+                            <tooltip>
+                                <Tooltip text="发送文件"/>
+                            </tooltip>
                             <graphic>
                                 <ImageView>
                                     <image>
@@ -55,6 +61,9 @@
                             </graphic>
                         </JFXButton>
                         <JFXButton fx:id="chat_record">
+                            <tooltip>
+                                <Tooltip text="聊天记录"/>
+                            </tooltip>
                             <graphic>
                                 <ImageView>
                                     <image>
@@ -68,6 +77,9 @@
                 </HBox>
                 <HBox fx:id="bottomActionRight" alignment="CENTER_RIGHT" spacing="10">
                     <JFXButton fx:id="phone">
+                        <tooltip>
+                            <Tooltip text="电话"/>
+                        </tooltip>
                         <graphic>
                             <ImageView>
                                 <image>
@@ -78,6 +90,9 @@
                         </graphic>
                     </JFXButton>
                     <JFXButton fx:id="video">
+                        <tooltip>
+                            <Tooltip text="视频"/>
+                        </tooltip>
                         <graphic>
                             <ImageView>
                                 <image>
