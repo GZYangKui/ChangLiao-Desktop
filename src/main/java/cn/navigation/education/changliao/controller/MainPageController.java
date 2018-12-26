@@ -100,16 +100,25 @@ public class MainPageController extends BaseController implements Initializable 
 
     @Override
     public void initData(Object data) {
+        var collectItem = new ArrayList<String>();
+        collectItem.add("全部收藏");
+        collectItem.add("链接");
+        collectItem.add("相册");
+        collectItem.add("笔记");
+        collectItem.add("文件");
+        collectItem.add("音乐");
         lists.get(1).initData(data);
+        lists.get(2).initData(collectItem);
     }
 
     /**
      * 设置内容取
+     *
      * @param
      */
-    public void setContent(MainContentBase base){
+    public void setContent(MainContentBase base) {
         //移除内容面板
-        content.getChildren().remove(0,content.getChildren().size());
+        content.getChildren().remove(0, content.getChildren().size());
         //将新面板的高度绑定
         base.getContent().prefHeightProperty().bind(leftBox.heightProperty());
         //添加新的内容
