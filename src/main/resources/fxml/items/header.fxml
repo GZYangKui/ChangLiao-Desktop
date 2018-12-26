@@ -9,7 +9,8 @@
 <HBox xmlns="http://javafx.com/javafx"
       xmlns:fx="http://javafx.com/fxml"
       alignment="CENTER_RIGHT"
-      spacing="10">
+      spacing="10"
+      style="-fx-background-color: #F5F5F5">
     <padding>
         <Insets right="10" top="5"/>
     </padding>
