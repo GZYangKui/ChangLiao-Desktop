@@ -104,7 +104,7 @@
                             <padding>
                                 <Insets top="5" right="5" left="5" bottom="5"/>
                             </padding>
-                            <JFXButton>
+                            <JFXButton fx:id="moreFunction">
                                 <tooltip>
                                     <Tooltip text="更多"/>
                                 </tooltip>

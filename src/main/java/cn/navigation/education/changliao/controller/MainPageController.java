@@ -8,6 +8,8 @@ import cn.navigation.education.changliao.base.MainContentBase;
 import cn.navigation.education.changliao.component.CollectionList;
 import cn.navigation.education.changliao.component.MailList;
 import cn.navigation.education.changliao.component.MessageList;
+import cn.navigation.education.changliao.component.MorePane;
+import cn.navigation.education.changliao.model.Position;
 import cn.navigation.education.changliao.pages.MainPage;
 import com.jfoenix.controls.JFXButton;
 import io.vertx.core.json.JsonObject;
@@ -50,6 +52,8 @@ public class MainPageController extends BaseController implements Initializable 
     private JFXButton collection;
     @FXML
     private VBox content;
+    @FXML
+    private JFXButton moreFunction;
 
     private List<BaseLeftContent> lists = new ArrayList<>();
 
@@ -90,6 +94,10 @@ public class MainPageController extends BaseController implements Initializable 
         chat.setOnAction(e -> pagination.setCurrentPageIndex(0));
         addressList.setOnAction(e -> pagination.setCurrentPageIndex(1));
         collection.setOnAction(e -> pagination.setCurrentPageIndex(2));
+        moreFunction.setOnMouseClicked(e -> {
+            var p = new Position(e.getScreenX(),e.getScreenY());
+            new MorePane(p).show(moreFunction.getScene().getWindow());
+        });
 
     }
 
