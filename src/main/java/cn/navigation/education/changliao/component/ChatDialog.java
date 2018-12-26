@@ -4,6 +4,7 @@ import cn.navigation.education.changliao.base.MainContentBase;
 import com.jfoenix.controls.JFXListView;
 import io.vertx.core.json.JsonObject;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
@@ -27,6 +28,8 @@ public class ChatDialog extends MainContentBase {
         VBox inputBox = (VBox) container.lookup("#inputBox");
         HBox bottomActionLeft = (HBox) container.lookup("#bottomActionLeft");
         HBox bottomActionRight = (HBox) container.lookup("#bottomActionRight");
+        TextArea inputArea = (TextArea) container.lookup("#inputArea");
+
 
         bottomActionLeft.prefWidthProperty().bind(inputBox.widthProperty().multiply(0.7));
         bottomActionRight.prefWidthProperty().bind(inputBox.widthProperty().multiply(0.3));
@@ -34,5 +37,6 @@ public class ChatDialog extends MainContentBase {
         topBox.prefHeightProperty().bind(container.heightProperty().multiply(0.1));
         messageDialog.prefHeightProperty().bind(container.heightProperty().multiply(0.8));
         inputBox.prefHeightProperty().bind(container.heightProperty().multiply(0.1));
+
     }
 }

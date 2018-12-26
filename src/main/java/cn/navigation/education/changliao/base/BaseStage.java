@@ -12,6 +12,10 @@ import java.io.IOException;
 import java.util.Map;
 import java.util.WeakHashMap;
 
+/**
+ * 所有窗口的基类
+ */
+
 public abstract class BaseStage extends Stage {
     public Scene scene;
     private boolean isMaxinize = false;

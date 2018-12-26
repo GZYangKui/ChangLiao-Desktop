@@ -4,6 +4,8 @@
 
 .input {
     -fx-background-color: #FFFFFF;
+    -fx-wrap-text: true;
+    -fx-font-size: 16px;
 }
 
 .title {
@@ -21,4 +23,19 @@
 
 .action:hover {
     -fx-background-color: #129611;
+}
+/**
+设置文本域的阴影颜色
+ */
+.text-area{
+    -fx-background-insets: 0;
+    -fx-background-color: transparent, white, transparent, white;
+}
+
+.text-area .content {
+    -fx-background-color: transparent, white, transparent, white;
+}
+
+.text-area:focused {
+    -fx-background-color: transparent, white, transparent, white;
 }

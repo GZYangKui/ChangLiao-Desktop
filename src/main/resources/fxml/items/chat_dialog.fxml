@@ -11,7 +11,7 @@
 <?import javafx.scene.image.Image?>
 <BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            fx:id="container" style="-fx-background-color: red">
+            fx:id="container">
     <stylesheets>
         <URL value="@../../css/chat_dialog_style.css"></URL>
     </stylesheets>
@@ -89,7 +89,7 @@
                     </JFXButton>
                 </HBox>
             </HBox>
-            <TextArea styleClass="input">
+            <TextArea styleClass="input" fx:id="inputArea">
 
             </TextArea>
             <HBox alignment="CENTER_RIGHT">
