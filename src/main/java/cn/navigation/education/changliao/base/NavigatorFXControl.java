@@ -2,6 +2,10 @@ package cn.navigation.education.changliao.base;
 
 import javafx.scene.control.Control;
 
+/**
+ * 自定义组件
+ */
+
 public abstract class NavigatorFXControl extends Control {
     private String styleSheet;
 
