@@ -16,11 +16,11 @@
             <children>
                 <HBox alignment="CENTER" spacing="10">
                     <Label text="用户名" styleClass="user_information"></Label>
-                    <TextField fx:id="userName"></TextField>
+                    <TextField fx:id="userName" text="yangkui"></TextField>
                 </HBox>
                 <HBox alignment="CENTER" spacing="10">
-                    <Label text="用户名" styleClass="user_information"></Label>
-                    <PasswordField fx:id="password"></PasswordField>
+                    <Label text="密  码" styleClass="user_information"></Label>
+                    <PasswordField fx:id="password" text="123456"></PasswordField>
                 </HBox>
                 <HBox alignment="CENTER">
                     <JFXButton text="登陆" styleClass="login_action" fx:id="loginAction"></JFXButton>
