@@ -3,6 +3,7 @@ package cn.navigation.education.changliao.component;
 import cn.navigation.education.changliao.base.MainContentBase;
 import cn.navigation.education.changliao.enums.MessageSource;
 import cn.navigation.education.changliao.enums.MessageType;
+import com.jfoenix.controls.JFXButton;
 import io.vertx.core.json.JsonObject;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
@@ -33,6 +34,8 @@ public class ChatDialog extends MainContentBase {
 
         var messageDialog = (ScrollPane) container.lookup("#messageDialog");
         messageDialog.setContent(content);
+        content.setAlignment(Pos.TOP_CENTER);
+        content.setSpacing(10);
         content.getChildren().add(new Message("hello,jack!", MessageType.TEXT, MessageSource.OWN).getPane());
         content.getChildren().add(new Message("hello,tom!", MessageType.TEXT, MessageSource.FRIEND).getPane());
 
@@ -40,7 +43,8 @@ public class ChatDialog extends MainContentBase {
         VBox inputBox = (VBox) container.lookup("#inputBox");
         HBox bottomActionLeft = (HBox) container.lookup("#bottomActionLeft");
         HBox bottomActionRight = (HBox) container.lookup("#bottomActionRight");
-        TextArea inputArea = (TextArea) container.lookup("#inputArea");
+        var inputArea = (TextArea) container.lookup("#inputArea");
+        var send = (JFXButton) container.lookup("#send");
 
 
         bottomActionLeft.prefWidthProperty().bind(inputBox.widthProperty().multiply(0.7));
@@ -49,6 +53,23 @@ public class ChatDialog extends MainContentBase {
         topBox.prefHeightProperty().bind(container.heightProperty().multiply(0.1));
         messageDialog.prefHeightProperty().bind(container.heightProperty().multiply(0.8));
         inputBox.prefHeightProperty().bind(container.heightProperty().multiply(0.1));
+        inputArea.setOnKeyPressed(e -> {
+            var code = e.getCode().getCode();
+            //按下enter键,发送消息
+            if (code == 10) {
+                send.fire();
+            }
+        });
+
+        send.setOnAction(e -> {
+            var msg = inputArea.getText();
+            if (msg.trim().equals("")) {
+                return;
+            }
+            content.getChildren().add(new Message(msg, MessageType.TEXT, MessageSource.OWN).getPane());
+            inputArea.clear();
+        });
+
 
     }
 }

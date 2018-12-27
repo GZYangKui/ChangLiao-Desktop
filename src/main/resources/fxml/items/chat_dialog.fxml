@@ -116,7 +116,7 @@
                 <padding>
                     <Insets right="20" bottom="10"/>
                 </padding>
-                <JFXButton styleClass="action" text="发送(S)"/>
+                <JFXButton styleClass="action" text="发送(S)" fx:id="send"/>
             </HBox>
         </VBox>
     </bottom>
