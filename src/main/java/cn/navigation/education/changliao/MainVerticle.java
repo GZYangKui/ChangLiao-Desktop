@@ -17,7 +17,7 @@ public class MainVerticle {
 
     public MainVerticle() {
         //启动javafx线程
-        Platform.startup(()->new Login());
+        Platform.startup(() -> new Login());
         //部署Vertice
         deploymentVertical();
     }
@@ -25,8 +25,10 @@ public class MainVerticle {
     public void deploymentVertical() {
         var options = new DeploymentOptions().setConfig(VERTICLE_CONFIG);
         vertx.deployVerticle(new TcpHandler(), options);
-        vertx.deployVerticle(new HttpHandler(),options);
+        vertx.deployVerticle(new HttpHandler(), options);
     }
 
-    static public void main(String... args) { new MainVerticle(); }
+    static public void main(String... args) {
+        new MainVerticle();
+    }
 }

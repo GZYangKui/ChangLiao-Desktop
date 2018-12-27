@@ -17,9 +17,9 @@
                         <Image url="@../../assets/images/login.png" requestedWidth="200" requestedHeight="200"/>
                     </image>
                 </ImageView>
-               <HBox alignment="CENTER">
-                   <Hyperlink text="切换到账号登陆" fx:id="switchLogin"></Hyperlink>
-               </HBox>
+                <HBox alignment="CENTER">
+                    <Hyperlink text="切换到账号登陆" fx:id="switchLogin"></Hyperlink>
+                </HBox>
             </children>
         </VBox>
     </center>

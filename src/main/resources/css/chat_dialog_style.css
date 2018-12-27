@@ -24,10 +24,11 @@
 .action:hover {
     -fx-background-color: #129611;
 }
+
 /**
 设置文本域的阴影颜色
  */
-.text-area{
+.text-area {
     -fx-background-insets: 0;
     -fx-background-color: transparent, white, transparent, white;
 }

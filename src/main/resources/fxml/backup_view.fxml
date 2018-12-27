@@ -34,7 +34,7 @@
                     </ImageView>
                 </graphic>
             </JFXButton>
-            <Separator  orientation="VERTICAL"/>
+            <Separator orientation="VERTICAL"/>
             <JFXButton alignment="CENTER_RIGHT" text="恢复聊天记录至手机" contentDisplay="TOP">
                 <graphic>
                     <ImageView>

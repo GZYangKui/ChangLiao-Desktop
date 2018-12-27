@@ -27,7 +27,9 @@
         </VBox>
     </top>
     <center>
-        <JFXListView styleClass="message_box" fx:id="messageDialog"></JFXListView>
+        <ScrollPane styleClass="message_box" fx:id="messageDialog" fitToHeight="true" fitToWidth="true">
+
+        </ScrollPane>
     </center>
     <bottom>
         <VBox fx:id="inputBox" styleClass="input" minHeight="150">

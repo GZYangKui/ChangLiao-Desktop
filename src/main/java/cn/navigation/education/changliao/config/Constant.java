@@ -11,19 +11,19 @@ public class Constant {
     public static final String HTTP_PORT = "http_port";
     public static final String TCP_ORT = "tcp_port";
     public static final String LOGIN = "login";
-    public static final String LOGIN_URL ="/user/login";
+    public static final String LOGIN_URL = "/user/login";
     public static final String TYPE = "type";
     public static final String SUBTYPE = "subtype";
     public static final String ACCOUNT = "account";
     public static final String USERNAME = "userName";
-    public static final String PASSWORD ="password";
-    public static final String VERSION ="version";
-    public static final String CURRENT_CURSION ="0.2";
+    public static final String PASSWORD = "password";
+    public static final String VERSION = "version";
+    public static final String CURRENT_CURSION = "0.2";
     public static final String USER = "user";
-    public static final String ID ="id";
-    public static final String END ="\r\n";
+    public static final String ID = "id";
+    public static final String END = "\r\n";
     public static final String FRIENDS = "friends";
-    public static final String NICKNAME ="nickname";
+    public static final String NICKNAME = "nickname";
 
 
 }

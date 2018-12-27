@@ -30,8 +30,8 @@ public class MailListItem {
         box.setAlignment(Pos.CENTER_LEFT);
         box.setPadding(new Insets(10));
         box.setSpacing(10);
-        box.getChildren().addAll(icon,nickName);
-        box.setOnMouseClicked(e->{
+        box.getChildren().addAll(icon, nickName);
+        box.setOnMouseClicked(e -> {
             MainPageController controller = (MainPageController) CONTEXT.get(MainPageController.class.getName());
             MainContentBase contentBase = new MailDetail(user);
             controller.setContent(contentBase);
@@ -40,9 +40,10 @@ public class MailListItem {
 
     /**
      * 获取HBox对象
+     *
      * @return
      */
-    public HBox getContent(){
+    public HBox getContent() {
         return box;
     }
 }

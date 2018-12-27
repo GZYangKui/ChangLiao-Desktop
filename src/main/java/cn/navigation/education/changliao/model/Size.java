@@ -1,9 +1,7 @@
 package cn.navigation.education.changliao.model;
 
 /**
- *
  * 尺寸model
- *
  */
 public class Size {
     private double width;

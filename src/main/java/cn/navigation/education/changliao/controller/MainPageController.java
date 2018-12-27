@@ -95,7 +95,7 @@ public class MainPageController extends BaseController implements Initializable 
         addressList.setOnAction(e -> pagination.setCurrentPageIndex(1));
         collection.setOnAction(e -> pagination.setCurrentPageIndex(2));
         moreFunction.setOnMouseClicked(e -> {
-            var p = new Position(e.getScreenX(),e.getScreenY());
+            var p = new Position(e.getScreenX(), e.getScreenY());
             new MorePane(p).show(moreFunction.getScene().getWindow());
         });
 

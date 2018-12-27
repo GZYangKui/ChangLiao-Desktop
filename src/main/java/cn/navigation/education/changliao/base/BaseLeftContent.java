@@ -23,6 +23,7 @@ public abstract class BaseLeftContent {
         event();
         loadData();
     }
+
     private void initView() {
         Parent root = null;
         try {
@@ -41,11 +42,15 @@ public abstract class BaseLeftContent {
 
     public abstract BorderPane getContent();
 
-    public  void event(){ }
+    public void event() {
+    }
 
-    protected void customUi(){ }
+    protected void customUi() {
+    }
 
-    protected void loadData(){ }
+    protected void loadData() {
+    }
 
-    public void initData(Object data){}
+    public void initData(Object data) {
+    }
 }

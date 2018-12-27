@@ -14,7 +14,6 @@ public class MessageList extends BaseLeftContent {
     }
 
 
-
     @Override
     public BorderPane getContent() {
         return container;

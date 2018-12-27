@@ -27,7 +27,7 @@ public class MailDetail extends MainContentBase {
         JFXButton sendMessage = (JFXButton) container.lookup("#sendMessage");
         nickName.setText(nickName.getText() + " " + o.getString(NICKNAME));
         area.setText(area.getText() + "  中国");
-        id.setText(id.getText() +"  "+ o.getString(ID));
+        id.setText(id.getText() + "  " + o.getString(ID));
         source.setText(source.getText() + "  朋友推荐");
         mark.setText(mark.getText() + "  " + "无");
         //处理发送消息事件

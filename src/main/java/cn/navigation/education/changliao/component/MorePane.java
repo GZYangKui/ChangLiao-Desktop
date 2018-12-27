@@ -10,7 +10,7 @@ public class MorePane extends PopupControl {
     public MorePane(Position p) {
         setAutoHide(true);
         setAutoFix(true);
-        setX(p.getX()+35);
+        setX(p.getX() + 35);
         setY(p.getY());
     }
 
