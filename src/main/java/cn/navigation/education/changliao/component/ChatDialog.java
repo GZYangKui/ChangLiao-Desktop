@@ -36,9 +36,6 @@ public class ChatDialog extends MainContentBase {
         messageDialog.setContent(content);
         content.setAlignment(Pos.TOP_CENTER);
         content.setSpacing(10);
-        content.getChildren().add(new Message("hello,jack!", MessageType.TEXT, MessageSource.OWN).getPane());
-        content.getChildren().add(new Message("hello,tom!", MessageType.TEXT, MessageSource.FRIEND).getPane());
-
 
         VBox inputBox = (VBox) container.lookup("#inputBox");
         HBox bottomActionLeft = (HBox) container.lookup("#bottomActionLeft");
@@ -53,6 +50,7 @@ public class ChatDialog extends MainContentBase {
         topBox.prefHeightProperty().bind(container.heightProperty().multiply(0.1));
         messageDialog.prefHeightProperty().bind(container.heightProperty().multiply(0.8));
         inputBox.prefHeightProperty().bind(container.heightProperty().multiply(0.1));
+
         inputArea.setOnKeyPressed(e -> {
             var code = e.getCode().getCode();
             //按下enter键,发送消息
