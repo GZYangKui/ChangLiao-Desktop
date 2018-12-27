@@ -5,6 +5,7 @@ import cn.navigation.education.changliao.tool.AssetLoader;
 import cn.navigation.education.changliao.enums.MessageType;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
@@ -18,15 +19,15 @@ public class Message {
     private MessageType type;
     private HBox box;
 
-    public Message(Object msg, MessageType type, MessageSource source) {
+    public Message(Object msg, MessageType type, MessageSource source, ScrollPane scroll) {
         this.msg = msg;
         this.type = type;
         if (type == MessageType.TEXT) {
-            initView(source);
+            initView(source, scroll);
         }
     }
 
-    public void initView(MessageSource source) {
+    public void initView(MessageSource source, ScrollPane scroll) {
         box = new HBox();
         var image = AssetLoader.loadAssetImage("images/header.jpg", 50, 50);
         var header = new ImageView(image);
@@ -37,6 +38,7 @@ public class Message {
         header.setClip(circle);
         var text = new Text(msg.toString());
         text.setFont(Font.font(17f));
+        text.wrappingWidthProperty().bind(scroll.widthProperty().multiply(0.6));
         box.setSpacing(10);
 
         //发起方
@@ -53,9 +55,10 @@ public class Message {
 //        text.setStyle("-fx-border-color: green;-fx-border-width: 1px;-fx-border-insets: " +
 //                "10px;-fx-border-radius: 10px;-fx-padding: 5px;-fx-background-color: red");
 
-       // text.wrappingWidthProperty().bind(box.widthProperty().multiply(0.5));
+        // text.wrappingWidthProperty().bind(box.widthProperty().multiply(0.5));
 
     }
+
 
     public HBox getPane() {
         return box;

@@ -5,12 +5,17 @@ import cn.navigation.education.changliao.enums.MessageSource;
 import cn.navigation.education.changliao.enums.MessageType;
 import com.jfoenix.controls.JFXButton;
 import io.vertx.core.json.JsonObject;
+import javafx.animation.Animation;
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
+import javafx.animation.Timeline;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.util.Duration;
 
 import static cn.navigation.education.changliao.config.Constant.NICKNAME;
 
@@ -34,6 +39,7 @@ public class ChatDialog extends MainContentBase {
 
         var messageDialog = (ScrollPane) container.lookup("#messageDialog");
         messageDialog.setContent(content);
+        messageDialog.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
         content.setAlignment(Pos.TOP_CENTER);
         content.setSpacing(10);
 
@@ -51,6 +57,7 @@ public class ChatDialog extends MainContentBase {
         messageDialog.prefHeightProperty().bind(container.heightProperty().multiply(0.8));
         inputBox.prefHeightProperty().bind(container.heightProperty().multiply(0.1));
 
+
         inputArea.setOnKeyPressed(e -> {
             var code = e.getCode().getCode();
             //按下enter键,发送消息
@@ -64,8 +71,10 @@ public class ChatDialog extends MainContentBase {
             if (msg.trim().equals("")) {
                 return;
             }
-            content.getChildren().add(new Message(msg, MessageType.TEXT, MessageSource.OWN).getPane());
+            content.getChildren().add(new Message(msg, MessageType.TEXT,
+                    MessageSource.OWN,messageDialog).getPane());
             inputArea.clear();
+            messageDialog.setVvalue(2);
         });
 
 
