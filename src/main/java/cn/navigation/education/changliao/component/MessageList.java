@@ -20,9 +20,7 @@ public class MessageList extends BaseLeftContent {
 
     private List<MessageListItem> items = new ArrayList<>();
 
-    public MessageList() {
-
-    }
+    public MessageList() { }
 
 
     @Override
@@ -34,6 +32,7 @@ public class MessageList extends BaseLeftContent {
     public void updateUi(JsonObject d) {
         var nickName = d.getString(FROM);
         var body = d.getString(BODY);
+        //遍历是该消息条目是否存在，如果存在更新为最新消息
         for (MessageListItem i : items) {
 
             if (i.getId().equals(nickName)) {
@@ -42,6 +41,7 @@ public class MessageList extends BaseLeftContent {
             }
         }
 
+        //如果不存在，新建消息条目
         var item = new MessageListItem(nickName, body);
         items.add(item);
         Platform.runLater(() ->
