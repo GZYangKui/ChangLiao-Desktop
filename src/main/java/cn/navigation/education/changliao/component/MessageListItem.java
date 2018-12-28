@@ -2,9 +2,11 @@ package cn.navigation.education.changliao.component;
 
 import cn.navigation.education.changliao.tool.AssetLoader;
 import javafx.application.Platform;
+import javafx.geometry.Pos;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
 /**
@@ -33,7 +35,10 @@ public class MessageListItem {
     private void initView() {
         t.setText(msg);
         nickName.setText(id);
+        nickName.setFont(Font.font(17f));
+        t.setFont(Font.font(15f));
         hBox.setSpacing(10);
+        hBox.setAlignment(Pos.CENTER_LEFT);
         v.getChildren().addAll(nickName, t);
         hBox.getChildren().addAll(icon, v);
     }

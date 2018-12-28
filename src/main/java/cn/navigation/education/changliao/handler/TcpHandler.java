@@ -104,7 +104,6 @@ public class TcpHandler extends AbstractVerticle {
             Platform.runLater(() -> login.updateUi(data));
             return;
         }
-        System.out.println(data);
 
         if (type.equals(MESSAGE)){
             var controller = (MainPageController)CONTEXT.get(MainPageController.class.getName());
@@ -117,6 +116,11 @@ public class TcpHandler extends AbstractVerticle {
         }
 
     }
+
+    /**
+     * 将消息发送给服务器
+     * @param msg
+     */
 
     public void writerMessage(JsonObject msg) {
         if (socket != null) {
