@@ -2,12 +2,23 @@ package cn.navigation.education.changliao.component;
 
 import cn.navigation.education.changliao.base.BaseLeftContent;
 
+import io.vertx.core.json.JsonObject;
+import javafx.application.Platform;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import static cn.navigation.education.changliao.config.Constant.BODY;
+import static cn.navigation.education.changliao.config.Constant.FROM;
 
 /**
  * 消息列表
  */
 public class MessageList extends BaseLeftContent {
+
+    private List<MessageListItem> items = new ArrayList<>();
 
     public MessageList() {
 
@@ -17,5 +28,25 @@ public class MessageList extends BaseLeftContent {
     @Override
     public BorderPane getContent() {
         return container;
+    }
+
+    @Override
+    public void updateUi(JsonObject d) {
+        var nickName = d.getString(FROM);
+        var body = d.getString(BODY);
+        for (MessageListItem i : items) {
+
+            if (i.getId().equals(nickName)) {
+                i.updateMsg(body);
+                return;
+            }
+        }
+
+        var item = new MessageListItem(nickName, body);
+        items.add(item);
+        Platform.runLater(() ->
+                messageList.getItems().add(item.getMessageListItem())
+        );
+
     }
 }

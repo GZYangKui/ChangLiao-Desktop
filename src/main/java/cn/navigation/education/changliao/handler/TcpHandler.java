@@ -1,7 +1,9 @@
 package cn.navigation.education.changliao.handler;
 
 import cn.navigation.education.changliao.base.BaseController;
+import cn.navigation.education.changliao.component.MessageList;
 import cn.navigation.education.changliao.controller.LoginController;
+import cn.navigation.education.changliao.controller.MainPageController;
 import io.vertx.core.AbstractVerticle;
 import io.vertx.core.buffer.Buffer;
 import io.vertx.core.eventbus.Message;
@@ -11,7 +13,10 @@ import io.vertx.core.net.NetClientOptions;
 import io.vertx.core.net.NetSocket;
 import javafx.application.Platform;
 
+import java.util.concurrent.CompletableFuture;
+
 import static cn.navigation.education.changliao.base.BaseController.CONTEXT;
+import static cn.navigation.education.changliao.base.BaseLeftContent.BASE_LEFT_CONTENT_MAP;
 import static cn.navigation.education.changliao.config.Constant.*;
 
 
@@ -21,7 +26,11 @@ public class TcpHandler extends AbstractVerticle {
 
     @Override
     public void start() throws Exception {
-        initNetClient();
+
+
+        CompletableFuture.runAsync(this::initNetClient);
+
+
         vertx.eventBus().consumer(this.getClass().getName(), ar -> {
             var data = (JsonObject) ar.body();
             var type = data.getString(TYPE);
@@ -94,6 +103,17 @@ public class TcpHandler extends AbstractVerticle {
             BaseController login = CONTEXT.get(LoginController.class.getName());
             Platform.runLater(() -> login.updateUi(data));
             return;
+        }
+        System.out.println(data);
+
+        if (type.equals(MESSAGE)){
+            var controller = (MainPageController)CONTEXT.get(MainPageController.class.getName());
+            var messageList = BASE_LEFT_CONTENT_MAP.get(MessageList.class.getName());
+            //将消息转发到主界面中去
+            controller.updateUi(data);
+            //将消息更新到消息列表
+            messageList.updateUi(data);
+
         }
 
     }

@@ -2,6 +2,7 @@ package cn.navigation.education.changliao.base;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXListView;
+import io.vertx.core.json.JsonObject;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.TextField;
@@ -9,6 +10,8 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 public abstract class BaseLeftContent {
     public TextField input;
@@ -17,11 +20,16 @@ public abstract class BaseLeftContent {
     public JFXListView messageList;
     public HBox topBox;
 
+
+    public static final Map<String,BaseLeftContent> BASE_LEFT_CONTENT_MAP = new HashMap<>();
+
     public BaseLeftContent() {
         initView();
         customUi();
         event();
         loadData();
+
+        BASE_LEFT_CONTENT_MAP.put(this.getClass().getName(),this);
     }
 
     private void initView() {
@@ -52,5 +60,9 @@ public abstract class BaseLeftContent {
     }
 
     public void initData(Object data) {
+    }
+    public  void updateUi(JsonObject d){
+
+
     }
 }

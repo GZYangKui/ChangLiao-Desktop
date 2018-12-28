@@ -12,6 +12,7 @@ import cn.navigation.education.changliao.component.MorePane;
 import cn.navigation.education.changliao.model.Position;
 import cn.navigation.education.changliao.pages.MainPage;
 import com.jfoenix.controls.JFXButton;
+import io.vertx.core.json.JsonArray;
 import io.vertx.core.json.JsonObject;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
@@ -21,11 +22,11 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.ResourceBundle;
+import java.util.*;
+import java.util.concurrent.CompletableFuture;
 
 import static cn.navigation.education.changliao.base.BaseStage.STAGE_CONTEXT;
+import static cn.navigation.education.changliao.config.Constant.*;
 
 public class MainPageController extends BaseController implements Initializable {
     @FXML
@@ -56,6 +57,8 @@ public class MainPageController extends BaseController implements Initializable 
     private JFXButton moreFunction;
 
     private List<BaseLeftContent> lists = new ArrayList<>();
+    //消息列表
+    private Map<String, JsonArray> messages = new HashMap<>();
 
 
     @Override
@@ -103,6 +106,15 @@ public class MainPageController extends BaseController implements Initializable 
 
     @Override
     public void updateUi(JsonObject data) {
+        var type = data.getString(TYPE);
+        if (type.equals(MESSAGE)) {
+            var list = messages.get(data.getString(FROM));
+            if (list == null) {
+                System.out.println("未知好友发来消息");
+                return;
+            }
+            list.add(data);
+        }
 
     }
 
@@ -117,6 +129,19 @@ public class MainPageController extends BaseController implements Initializable 
         collectItem.add("音乐");
         lists.get(1).initData(data);
         lists.get(2).initData(collectItem);
+
+        CompletableFuture.runAsync(() -> {
+            var f = (JsonObject) data;
+            f.getJsonArray(FRIENDS).stream().forEach(v -> {
+                var k = (JsonObject) v;
+                messages.put(k.getString(ID), new JsonArray());
+            });
+        }).whenComplete((v, t) -> {
+            if (t != null) {
+                System.out.println("朋友映射失败:" + t.getMessage());
+            }
+        });
+
     }
 
     /**

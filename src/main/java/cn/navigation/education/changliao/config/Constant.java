@@ -24,6 +24,9 @@ public class Constant {
     public static final String END = "\r\n";
     public static final String FRIENDS = "friends";
     public static final String NICKNAME = "nickname";
+    public static final String MESSAGE = "message";
+    public static final String FROM = "from";
+    public static final String BODY ="body";
 
 
 }
