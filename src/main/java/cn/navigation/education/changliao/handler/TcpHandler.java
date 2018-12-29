@@ -1,6 +1,7 @@
 package cn.navigation.education.changliao.handler;
 
 import cn.navigation.education.changliao.base.BaseController;
+import cn.navigation.education.changliao.component.ChatDialog;
 import cn.navigation.education.changliao.component.MessageList;
 import cn.navigation.education.changliao.controller.LoginController;
 import cn.navigation.education.changliao.controller.MainPageController;
@@ -17,6 +18,7 @@ import java.util.concurrent.CompletableFuture;
 
 import static cn.navigation.education.changliao.base.BaseController.CONTEXT;
 import static cn.navigation.education.changliao.base.BaseLeftContent.BASE_LEFT_CONTENT_MAP;
+import static cn.navigation.education.changliao.base.MainContentBase.MAIN_CONTENT_BASE_MAP;
 import static cn.navigation.education.changliao.config.Constant.*;
 
 
@@ -33,24 +35,29 @@ public class TcpHandler extends AbstractVerticle {
 
         vertx.eventBus().consumer(this.getClass().getName(), ar -> {
             var data = (JsonObject) ar.body();
-            var type = data.getString(TYPE);
-            switch (type) {
-                case ACCOUNT:
-                    userAccount(data, ar);
-                    break;
-                default:
-            }
+            writerMessage(data);
+            ar.reply(new JsonObject());
+//            var type = data.getString(TYPE);
+//            switch (type) {
+//                case ACCOUNT:
+//                    userAccount(data, ar);
+//                    break;
+//                default:
+//                case MESSAGE:
+//
+//                    break;
+//            }
 
         });
     }
 
-    private void userAccount(JsonObject data, Message it) {
-        var subtype = data.getString(SUBTYPE);
-        if (subtype.equals(LOGIN)) {
-            login(data, it);
-        }
-
-    }
+//    private void userAccount(JsonObject data, Message it) {
+//        var subtype = data.getString(SUBTYPE);
+//        if (subtype.equals(LOGIN)) {
+//            login(data, it);
+//        }
+//
+//    }
 
     private void login(JsonObject data, Message it) {
         var d = new JsonObject();
@@ -59,7 +66,7 @@ public class TcpHandler extends AbstractVerticle {
                 .put(SUBTYPE, LOGIN)
                 .put(ID, data.getString(USERNAME))
                 .put(PASSWORD, data.getString(PASSWORD))
-                .put(VERSION, CURRENT_CURSION);
+                .put(VERSION, CURRENT_VERSION);
         writerMessage(data);
 
     }
@@ -105,13 +112,16 @@ public class TcpHandler extends AbstractVerticle {
             return;
         }
 
-        if (type.equals(MESSAGE)){
-            var controller = (MainPageController)CONTEXT.get(MainPageController.class.getName());
+        if (type.equals(MESSAGE)) {
+            var controller = (MainPageController) CONTEXT.get(MainPageController.class.getName());
             var messageList = BASE_LEFT_CONTENT_MAP.get(MessageList.class.getName());
+            var chatDialog = MAIN_CONTENT_BASE_MAP.get(ChatDialog.class.getName());
             //将消息转发到主界面中去
             controller.updateUi(data);
             //将消息更新到消息列表
             messageList.updateUi(data);
+            //将消息发送自当前聊天框
+            chatDialog.updateUi(data);
 
         }
 
@@ -119,6 +129,7 @@ public class TcpHandler extends AbstractVerticle {
 
     /**
      * 将消息发送给服务器
+     *
      * @param msg
      */
 

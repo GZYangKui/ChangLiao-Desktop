@@ -1,10 +1,7 @@
 package cn.navigation.education.changliao.controller;
 
 
-import cn.navigation.education.changliao.base.BaseController;
-import cn.navigation.education.changliao.base.BaseLeftContent;
-import cn.navigation.education.changliao.base.BaseStage;
-import cn.navigation.education.changliao.base.MainContentBase;
+import cn.navigation.education.changliao.base.*;
 import cn.navigation.education.changliao.component.CollectionList;
 import cn.navigation.education.changliao.component.MailList;
 import cn.navigation.education.changliao.component.MessageList;
@@ -142,6 +139,22 @@ public class MainPageController extends BaseController implements Initializable 
             }
         });
 
+    }
+
+    /**
+     * 管理消息
+     * @param id
+     * @param handler
+     */
+    public void handlerMessage(String id, MessageHandler<JsonArray> handler) {
+        messages.forEach((k, v) -> {
+
+            if (k.equals(id)) {
+                handler.handler(v);
+                return;
+            }
+
+        });
     }
 
     /**

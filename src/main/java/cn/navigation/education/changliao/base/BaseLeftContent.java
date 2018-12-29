@@ -12,6 +12,7 @@ import javafx.scene.layout.HBox;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.WeakHashMap;
 
 public abstract class BaseLeftContent {
     public TextField input;
@@ -21,7 +22,7 @@ public abstract class BaseLeftContent {
     public HBox topBox;
 
 
-    public static final Map<String,BaseLeftContent> BASE_LEFT_CONTENT_MAP = new HashMap<>();
+    public static final Map<String,BaseLeftContent> BASE_LEFT_CONTENT_MAP = new WeakHashMap<>();
 
     public BaseLeftContent() {
         initView();

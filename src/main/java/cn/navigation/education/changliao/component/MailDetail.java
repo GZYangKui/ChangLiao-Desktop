@@ -33,7 +33,7 @@ public class MailDetail extends MainContentBase {
         //处理发送消息事件
         sendMessage.setOnAction(e -> {
             MainPageController controller = (MainPageController) CONTEXT.get(MainPageController.class.getName());
-            controller.setContent(new ChatDialog(o));
+            controller.setContent(new ChatDialog(o.getString(ID)));
         });
     }
 }

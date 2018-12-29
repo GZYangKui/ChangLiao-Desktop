@@ -108,10 +108,10 @@ public class LoginController extends BaseController implements Initializable {
             return;
         }
         var data = new JsonObject();
-        data.put(TYPE, ACCOUNT);
+        data.put(TYPE, USER);
         data.put(SUBTYPE, LOGIN);
         data.put(PASSWORD, StringUtils.toMd5(password.getText()));
-        data.put(USERNAME, userName.getText());
+        data.put(ID, userName.getText());
         vertx.eventBus().send(TcpHandler.class.getName(), data);
     }
 
@@ -120,11 +120,16 @@ public class LoginController extends BaseController implements Initializable {
     public void updateUi(JsonObject data) {
         var login = data.getBoolean(LOGIN);
         if (login) {
+            //储存当前账号信息
+            CURRENT_ACCOUNT.put(ID, data.getString(ID) == null ? data.getString(NICKNAME) : data.getString(ID));
+            CURRENT_ACCOUNT.put(NICKNAME, data.getString(NICKNAME));
+            //关闭窗口
             close.getScene().getWindow().fireEvent(new Event(WindowEvent.WINDOW_CLOSE_REQUEST));
             //好友列表
             var friend = new JsonObject().put(FRIENDS, data.getJsonArray(FRIENDS));
             //跳转到主页面
             new MainPage(friend);
+
             return;
         }
         Notifications.create().position(Pos.CENTER).text("登陆失败,请检查用户名/密码").showInformation();

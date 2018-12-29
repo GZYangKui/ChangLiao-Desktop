@@ -18,7 +18,7 @@ public class Constant {
     public static final String USERNAME = "userName";
     public static final String PASSWORD = "password";
     public static final String VERSION = "version";
-    public static final String CURRENT_CURSION = "0.2";
+    public static final String CURRENT_VERSION = "0.2";
     public static final String USER = "user";
     public static final String ID = "id";
     public static final String END = "\r\n";
@@ -27,6 +27,10 @@ public class Constant {
     public static final String MESSAGE = "message";
     public static final String FROM = "from";
     public static final String BODY ="body";
+    public static final String TEXT = "text";
+    public static final String TO = "to";
+    public static final String UUID = "uuid";
+    public static final JsonObject CURRENT_ACCOUNT =new JsonObject();
 
 
 }
