@@ -138,7 +138,7 @@ public class ChatDialog extends MainContentBase {
         var from = m.getString(FROM);
 
 
-        //如果消息不是来自于当前聊天好友，不是则不做任何事
+        //如果消息不是来自于当前聊天好友或者当前账号，不是则不做任何事
         if (!from.equals(id)&&!from.equals(CURRENT_ACCOUNT.getString(ID))) {
             return;
         }
