@@ -104,14 +104,12 @@ public class ChatDialog extends MainContentBase {
                         //清除输入框
                         inputArea.clear();
 
-                        message.put(FROM, CURRENT_ACCOUNT.getString(ID));
-
                         //将消息更新到消息列表中去
                         BaseLeftContent messageList = BASE_LEFT_CONTENT_MAP.get(MessageList.class.getName());
-                        messageList.updateUi(message);
+                        messageList.updateUi(message.put(FROM,id));
                         //将消息更新到主界面中去储蓄
                         MainPageController c = (MainPageController) CONTEXT.get(MainPageController.class.getName());
-                        c.updateUi(message);
+                        c.updateUi(message.put(FROM,CURRENT_ACCOUNT.getString(ID)));
                     });
                     return;
                 }
@@ -141,13 +139,19 @@ public class ChatDialog extends MainContentBase {
 
 
         //如果消息不是来自于当前聊天好友，不是则不做任何事
-        if (!from.equals(id)) {
+        if (!from.equals(id)&&!from.equals(CURRENT_ACCOUNT.getString(ID))) {
             return;
         }
+
         var body = m.getString(BODY);
 
         Platform.runLater(() -> {
-            var message = new Message(body, MessageType.TEXT, MessageSource.FRIEND, messageDialog);
+            Message message;
+            if (!from.equals(CURRENT_ACCOUNT.getString(ID))) {
+                message = new Message(body, MessageType.TEXT, MessageSource.FRIEND, messageDialog);
+            } else {
+                message = new Message(body, MessageType.TEXT, MessageSource.OWN, messageDialog);
+            }
             content.getChildren().add(message.getPane());
         });
 

@@ -107,10 +107,12 @@ public class MainPageController extends BaseController implements Initializable 
 
         if (type.equals(MESSAGE)) {
             var from = data.getString(FROM);
+            var to = data.getString(TO);
+
             //首先判断是否自己发出去的
             if (!from.equals(CURRENT_ACCOUNT.getString(ID))) {
 
-                var list = messages.get(data.getString(FROM));
+                var list = messages.get(from);
 
                 if (list == null) {
                     System.out.println("未知好友发来消息");
@@ -119,6 +121,12 @@ public class MainPageController extends BaseController implements Initializable 
                 list.add(data);
                 return;
             }
+
+            //处理自己发出去的消息
+            handlerMessage(to, rs -> {
+                rs.add(data);
+            });
+
             System.out.println(data);
         }
 
@@ -157,6 +165,12 @@ public class MainPageController extends BaseController implements Initializable 
      * @param handler
      */
     public void handlerMessage(String id, MessageHandler<JsonArray> handler) {
+        if (!messages.containsKey(id)) {
+            var data = new JsonArray();
+            messages.put(id, data);
+            handler.handler(data);
+            return;
+        }
         messages.forEach((k, v) -> {
 
             if (k.equals(id)) {
