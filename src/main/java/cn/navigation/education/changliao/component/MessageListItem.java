@@ -21,9 +21,13 @@ public class MessageListItem {
     private HBox hBox = new HBox();
     private ImageView icon = new ImageView(AssetLoader.loadAssetImage("images/header.jpg", 30, 30));
     private VBox v = new VBox();
+    //用户id
     private String id;
+    //显示消息
     private Label t = new Label();
+    //消息内容
     private String msg;
+    //用户昵称
     private Label nickName = new Label();
 
     /**
@@ -43,12 +47,17 @@ public class MessageListItem {
         nickName.setFont(Font.font(17f));
         t.setFont(Font.font(15f));
         t.setTextOverrun(OverrunStyle.ELLIPSIS);
-        t.prefWidthProperty().bind(hBox.widthProperty().multiply(0.9));
-        nickName.prefWidthProperty().bind(hBox.widthProperty().multiply(0.9));
+
         hBox.setSpacing(10);
         hBox.setAlignment(Pos.CENTER_LEFT);
+
         v.getChildren().addAll(nickName, t);
+
         hBox.getChildren().addAll(icon, v);
+
+        t.prefWidthProperty().bind(hBox.widthProperty().multiply(0.7));
+        nickName.prefWidthProperty().bind(hBox.widthProperty().multiply(0.7));
+
         hBox.setOnMouseClicked(e -> {
             MainPageController controller = (MainPageController) CONTEXT.get(MainPageController.class.getName());
             controller.setContent(new ChatDialog(id));

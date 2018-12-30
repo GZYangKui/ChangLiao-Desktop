@@ -10,6 +10,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import javafx.scene.text.TextAlignment;
 
 public class Message {
     //消息
@@ -36,24 +37,28 @@ public class Message {
         header.setClip(circle);
         var text = new Text(msg.toString());
         text.setFont(Font.font(17f));
-        text.wrappingWidthProperty().bind(scroll.widthProperty().multiply(0.6));
         box.setSpacing(10);
-
+        var k = new HBox();
         //发起方
         if (source == MessageSource.FRIEND) {
+
             box.setAlignment(Pos.CENTER_LEFT);
-            box.getChildren().addAll(header, text);
+            k.getChildren().addAll(header,text);
+            //文字靠左显示
+            text.setTextAlignment(TextAlignment.LEFT);
+
         } else {
             box.setAlignment(Pos.CENTER_RIGHT);
             //镜像显示文字
             text.setTranslateX(-1.0f);
+            //文字靠右侧显示
+            text.setTextAlignment(TextAlignment.RIGHT);
             //接收方
-            box.getChildren().addAll(text, header);
+            k.getChildren().addAll(text, header);
         }
-//        text.setStyle("-fx-border-color: green;-fx-border-width: 1px;-fx-border-insets: " +
-//                "10px;-fx-border-radius: 10px;-fx-padding: 5px;-fx-background-color: red");
+        k.setStyle("-fx-border-color: red;-fx-border-width: 1px;");
+        box.getChildren().add(k);
 
-        // text.wrappingWidthProperty().bind(box.widthProperty().multiply(0.5));
 
     }
 
