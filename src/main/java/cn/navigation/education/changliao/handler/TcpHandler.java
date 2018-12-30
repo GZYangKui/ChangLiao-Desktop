@@ -1,6 +1,7 @@
 package cn.navigation.education.changliao.handler;
 
 import cn.navigation.education.changliao.base.BaseController;
+import cn.navigation.education.changliao.base.MessageHandler;
 import cn.navigation.education.changliao.component.ChatDialog;
 import cn.navigation.education.changliao.component.MessageList;
 import cn.navigation.education.changliao.controller.LoginController;
@@ -35,40 +36,35 @@ public class TcpHandler extends AbstractVerticle {
 
         vertx.eventBus().consumer(this.getClass().getName(), ar -> {
             var data = (JsonObject) ar.body();
-            writerMessage(data);
-            ar.reply(new JsonObject());
-//            var type = data.getString(TYPE);
-//            switch (type) {
-//                case ACCOUNT:
-//                    userAccount(data, ar);
-//                    break;
-//                default:
-//                case MESSAGE:
-//
-//                    break;
-//            }
+
+            var type = data.getString(TYPE);
+            switch (type) {
+                case USER:
+                    userAccount(data, ar);
+                    break;
+                default:
+                case MESSAGE:
+                    userMessage(data, ar);
+                    break;
+            }
 
         });
     }
 
-//    private void userAccount(JsonObject data, Message it) {
-//        var subtype = data.getString(SUBTYPE);
-//        if (subtype.equals(LOGIN)) {
-//            login(data, it);
-//        }
-//
-//    }
+    private void userMessage(JsonObject data, Message it) {
+        writerMessage(data, it::reply);
+    }
+
+    private void userAccount(JsonObject data, Message it) {
+        var subtype = data.getString(SUBTYPE);
+        if (subtype.equals(LOGIN)) {
+            login(data, it);
+        }
+
+    }
 
     private void login(JsonObject data, Message it) {
-        var d = new JsonObject();
-        var result = new JsonObject();
-        data.put(TYPE, USER)
-                .put(SUBTYPE, LOGIN)
-                .put(ID, data.getString(USERNAME))
-                .put(PASSWORD, data.getString(PASSWORD))
-                .put(VERSION, CURRENT_VERSION);
-        writerMessage(data);
-
+        writerMessage(data, it::reply);
     }
 
     private void initNetClient() {
@@ -111,19 +107,31 @@ public class TcpHandler extends AbstractVerticle {
             Platform.runLater(() -> login.updateUi(data));
             return;
         }
+        /**
+         * 如果接受到的数据类型为Message则分发消息
+         */
 
         if (type.equals(MESSAGE)) {
-            var controller = (MainPageController) CONTEXT.get(MainPageController.class.getName());
-            var messageList = BASE_LEFT_CONTENT_MAP.get(MessageList.class.getName());
-            var chatDialog = MAIN_CONTENT_BASE_MAP.get(ChatDialog.class.getName());
-            //将消息转发到主界面中去
-            controller.updateUi(data);
-            //将消息更新到消息列表
-            messageList.updateUi(data);
-            //将消息发送自当前聊天框
-            chatDialog.updateUi(data);
-
+            deliverMessage(data);
         }
+
+    }
+
+    /**
+     * 分发消息到各个窗口
+     */
+    private void deliverMessage(JsonObject data) {
+
+
+        var controller = (MainPageController) CONTEXT.get(MainPageController.class.getName());
+        var messageList = BASE_LEFT_CONTENT_MAP.get(MessageList.class.getName());
+        var chatDialog = MAIN_CONTENT_BASE_MAP.get(ChatDialog.class.getName());
+        //将消息转发到主界面中去
+        controller.updateUi(data);
+        //将消息更新到消息列表
+        messageList.updateUi(data);
+        //将消息发送自当前聊天框
+        chatDialog.updateUi(data);
 
     }
 
@@ -133,9 +141,20 @@ public class TcpHandler extends AbstractVerticle {
      * @param msg
      */
 
-    public void writerMessage(JsonObject msg) {
-        if (socket != null) {
-            socket.write(msg.toBuffer().appendString(END));
+    public void writerMessage(JsonObject msg, MessageHandler<JsonObject> handler) {
+        var result = new JsonObject();
+        result.put(STATUS, SUCCESS);
+        try {
+            if (socket != null) {
+                socket.write(msg.toBuffer().appendString(END));
+            }
+        } catch (Exception e) {
+            System.out.println("发送消息失败:" + e.getMessage());
+            result.put(STATUS, FAILED);
+            result.put(MESSAGE, "发送消息失败:" + e.getMessage());
         }
+
+        handler.handler(result);
+
     }
 }

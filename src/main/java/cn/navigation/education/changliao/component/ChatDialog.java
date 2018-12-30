@@ -1,6 +1,7 @@
 package cn.navigation.education.changliao.component;
 
 import cn.navigation.education.changliao.MainVerticle;
+import cn.navigation.education.changliao.base.BaseLeftContent;
 import cn.navigation.education.changliao.base.MainContentBase;
 import cn.navigation.education.changliao.controller.MainPageController;
 import cn.navigation.education.changliao.enums.MessageSource;
@@ -18,6 +19,7 @@ import javafx.scene.layout.VBox;
 
 
 import static cn.navigation.education.changliao.base.BaseController.CONTEXT;
+import static cn.navigation.education.changliao.base.BaseLeftContent.BASE_LEFT_CONTENT_MAP;
 import static cn.navigation.education.changliao.config.Constant.*;
 
 
@@ -26,7 +28,7 @@ import static cn.navigation.education.changliao.config.Constant.*;
  */
 public class ChatDialog extends MainContentBase {
     private VBox content = new VBox();
-    private String id;
+    private final String id;
     private ScrollPane messageDialog;
 
     public ChatDialog(String id) {
@@ -85,10 +87,38 @@ public class ChatDialog extends MainContentBase {
                     .put(UUID, java.util.UUID.randomUUID().toString())
                     .put(VERSION, CURRENT_VERSION);
 
-            MainVerticle.vertx.eventBus().send(TcpHandler.class.getName(), message);
-            content.getChildren().add(new Message(msg, MessageType.TEXT,
-                    MessageSource.OWN, messageDialog).getPane());
-            inputArea.clear();
+            MainVerticle.vertx.eventBus().send(TcpHandler.class.getName(), message, rs -> {
+                if (!rs.succeeded()) {
+                    System.out.println("消息发送失败:" + rs.cause());
+                    return;
+                }
+                var result = (JsonObject) rs.result().body();
+
+                //发送成功
+                if (result.getString(STATUS).equals(SUCCESS)) {
+
+                    Platform.runLater(() -> {
+                        //添加条目
+                        content.getChildren().add(new Message(msg, MessageType.TEXT,
+                                MessageSource.OWN, messageDialog).getPane());
+                        //清除输入框
+                        inputArea.clear();
+
+                        message.put(FROM, CURRENT_ACCOUNT.getString(ID));
+
+                        //将消息更新到消息列表中去
+                        BaseLeftContent messageList = BASE_LEFT_CONTENT_MAP.get(MessageList.class.getName());
+                        messageList.updateUi(message);
+                        //将消息更新到主界面中去储蓄
+                        MainPageController c = (MainPageController) CONTEXT.get(MainPageController.class.getName());
+                        c.updateUi(message);
+                    });
+                    return;
+                }
+
+                System.out.println("发送失败:" + result.getString(MESSAGE));
+            });
+
 
         });
 
@@ -108,6 +138,8 @@ public class ChatDialog extends MainContentBase {
     @Override
     public void updateUi(JsonObject m) {
         var from = m.getString(FROM);
+
+
         //如果消息不是来自于当前聊天好友，不是则不做任何事
         if (!from.equals(id)) {
             return;

@@ -30,6 +30,9 @@ public class Constant {
     public static final String TEXT = "text";
     public static final String TO = "to";
     public static final String UUID = "uuid";
+    public static final String STATUS ="status";
+    public static final String SUCCESS ="success";
+    public static final String FAILED = "failed";
     public static final JsonObject CURRENT_ACCOUNT =new JsonObject();
 
 

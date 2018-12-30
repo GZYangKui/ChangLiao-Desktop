@@ -104,13 +104,22 @@ public class MainPageController extends BaseController implements Initializable 
     @Override
     public void updateUi(JsonObject data) {
         var type = data.getString(TYPE);
+
         if (type.equals(MESSAGE)) {
-            var list = messages.get(data.getString(FROM));
-            if (list == null) {
-                System.out.println("未知好友发来消息");
+            var from = data.getString(FROM);
+            //首先判断是否自己发出去的
+            if (!from.equals(CURRENT_ACCOUNT.getString(ID))) {
+
+                var list = messages.get(data.getString(FROM));
+
+                if (list == null) {
+                    System.out.println("未知好友发来消息");
+                    return;
+                }
+                list.add(data);
                 return;
             }
-            list.add(data);
+            System.out.println(data);
         }
 
     }
@@ -143,6 +152,7 @@ public class MainPageController extends BaseController implements Initializable 
 
     /**
      * 管理消息
+     *
      * @param id
      * @param handler
      */

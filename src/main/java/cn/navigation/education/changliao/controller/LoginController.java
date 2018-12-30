@@ -112,7 +112,13 @@ public class LoginController extends BaseController implements Initializable {
         data.put(SUBTYPE, LOGIN);
         data.put(PASSWORD, StringUtils.toMd5(password.getText()));
         data.put(ID, userName.getText());
-        vertx.eventBus().send(TcpHandler.class.getName(), data);
+        vertx.eventBus().send(TcpHandler.class.getName(), data,ar->{
+            if (!ar.succeeded()){
+                System.out.println("连接服务器失败:" + ar.cause());
+                return;
+            }
+            System.out.println(ar.result().body());
+        });
     }
 
 
