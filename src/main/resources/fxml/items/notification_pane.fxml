@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<?import com.jfoenix.controls.JFXListView?>
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:id="container">
+    <center>
+        <StackPane alignment="CENTER" fx:id="stack">
+            <JFXButton text="暂无消息" contentDisplay="TOP">
+                <graphic>
+                    <ImageView>
+                        <image>
+                            <Image url="@../../assets/images/notification.png" requestedWidth="50.0" requestedHeight="50.0"/>
+                        </image>
+                    </ImageView>
+                </graphic>
+            </JFXButton>
+            <JFXListView visible="false" fx:id="notificationList">
+
+            </JFXListView>
+        </StackPane>
+    </center>
+
+</BorderPane>

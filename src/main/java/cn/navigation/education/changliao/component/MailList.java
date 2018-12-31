@@ -14,7 +14,7 @@ import static cn.navigation.education.changliao.config.Constant.FRIENDS;
 public class MailList extends BaseLeftContent {
 
     public MailList() {
-
+        messageList.getItems().add(new Notification().getNotificationItem());
     }
 
 
