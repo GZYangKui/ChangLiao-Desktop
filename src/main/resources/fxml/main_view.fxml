@@ -132,7 +132,7 @@
     </left>
     <center>
         <VBox BorderPane.alignment="TOP_CENTER" alignment="TOP_CENTER" styleClass="center_box">
-            <fx:include source="items/header.fxml" fx:id="windowTopBar"/>
+            <fx:include source="items/header.fxml" fx:id="topBox"/>
             <VBox fx:id="content" minHeight="100" alignment="CENTER"></VBox>
         </VBox>
     </center>

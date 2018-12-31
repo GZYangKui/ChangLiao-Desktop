@@ -39,7 +39,7 @@ public class MainPageController extends BaseController implements Initializable 
     @FXML
     private JFXButton maximization;
     @FXML
-    private HBox windowTopBar;
+    private HBox topBox;
     @FXML
     private Pagination pagination;
     @FXML
@@ -68,9 +68,9 @@ public class MainPageController extends BaseController implements Initializable 
         leftBoxOne.prefHeightProperty().bind(leftBox.heightProperty().multiply(0.7));
         leftBoxTwo.prefHeightProperty().bind(leftBox.heightProperty().multiply(0.3));
         pagination.prefHeightProperty().bind(leftBox.heightProperty());
-        close = (JFXButton) windowTopBar.lookup("#close");
-        minimize = (JFXButton) windowTopBar.lookup("#minimize");
-        maximization = (JFXButton) windowTopBar.lookup("#maximization");
+        close = (JFXButton) topBox.lookup("#close");
+        minimize = (JFXButton) topBox.lookup("#minimize");
+        maximization = (JFXButton) topBox.lookup("#maximization");
         pagination.getStyleClass().add(Pagination.STYLE_CLASS_BULLET);
         pagination.setPageFactory(e -> lists.get(e).getContent());
         lists.add(new MessageList());
