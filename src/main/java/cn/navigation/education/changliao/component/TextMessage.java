@@ -1,8 +1,9 @@
 package cn.navigation.education.changliao.component;
 
+import cn.navigation.education.changliao.base.Message;
 import cn.navigation.education.changliao.enums.MessageSource;
-import cn.navigation.education.changliao.tool.AssetLoader;
 import cn.navigation.education.changliao.enums.MessageType;
+import cn.navigation.education.changliao.tool.AssetLoader;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
@@ -10,22 +11,15 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.shape.Circle;
 
-public class Message {
-    //消息
-    private final Object msg;
-    private MessageType type;
-    private HBox box;
+public class TextMessage extends Message {
 
-    public Message(Object msg, MessageType type, MessageSource source, ScrollPane scroll) {
-        this.msg = msg;
-        this.type = type;
-        if (type == MessageType.TEXT) {
-            initView(source, scroll);
-        }
+    public TextMessage(Object msg, MessageType type,MessageSource source, ScrollPane scroll) {
+        super(msg,source,type,scroll);
+        initView();
     }
 
-    public void initView(MessageSource source, ScrollPane scroll) {
-        box = new HBox();
+    @Override
+    public void initView() {
         var image = AssetLoader.loadAssetImage("images/header.jpg", 50, 50);
         var header = new ImageView(image);
         var circle = new Circle();
@@ -42,7 +36,7 @@ public class Message {
         if (source == MessageSource.FRIEND) {
 
             box.setAlignment(Pos.CENTER_LEFT);
-            k.getChildren().addAll(header,text);
+            k.getChildren().addAll(header, text);
 
         } else {
             box.setAlignment(Pos.CENTER_RIGHT);
@@ -57,18 +51,13 @@ public class Message {
         text.setStyle(
 
                 "-fx-border-width: 1px;" +
-                "-fx-border-color: red;" +
-                "-fx-border-radius: 5px;-fx-padding: 10px;" +
-                "-fx-wrap-text: true;-fx-font-size: 17px;"
+                        "-fx-border-color: red;" +
+                        "-fx-border-radius: 5px;-fx-padding: 10px;" +
+                        "-fx-wrap-text: true;-fx-font-size: 17px;"
         );
 
         box.getChildren().add(k);
 
 
-    }
-
-
-    public HBox getPane() {
-        return box;
     }
 }

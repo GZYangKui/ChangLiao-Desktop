@@ -122,7 +122,7 @@ public class TcpHandler extends AbstractVerticle {
      */
     private void deliverMessage(JsonObject data) {
 
-
+        System.out.println(data);
         var controller = (MainPageController) CONTEXT.get(MainPageController.class.getName());
         var messageList = BASE_LEFT_CONTENT_MAP.get(MessageList.class.getName());
         var chatDialog = MAIN_CONTENT_BASE_MAP.get(ChatDialog.class.getName());

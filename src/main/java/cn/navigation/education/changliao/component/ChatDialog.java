@@ -100,8 +100,8 @@ public class ChatDialog extends MainContentBase {
 
                     Platform.runLater(() -> {
                         //添加条目
-                        content.getChildren().add(new Message(msg, MessageType.TEXT,
-                                MessageSource.OWN, messageDialog).getPane());
+                        content.getChildren().add(new TextMessage(msg, MessageType.TEXT,
+                                MessageSource.OWN, messageDialog).getMessage());
                         //清除输入框
                         inputArea.clear();
 
@@ -147,13 +147,13 @@ public class ChatDialog extends MainContentBase {
         var body = m.getString(BODY);
 
         Platform.runLater(() -> {
-            Message message;
+            TextMessage message;
             if (!from.equals(CURRENT_ACCOUNT.getString(ID))) {
-                message = new Message(body, MessageType.TEXT, MessageSource.FRIEND, messageDialog);
+                message = new TextMessage(body, MessageType.TEXT, MessageSource.FRIEND, messageDialog);
             } else {
-                message = new Message(body, MessageType.TEXT, MessageSource.OWN, messageDialog);
+                message = new TextMessage(body, MessageType.TEXT, MessageSource.OWN, messageDialog);
             }
-            content.getChildren().add(message.getPane());
+            content.getChildren().add(message.getMessage());
         });
 
 
