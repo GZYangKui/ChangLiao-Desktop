@@ -25,7 +25,7 @@ public abstract class BaseNotificationItem {
     /**
      * @param topic   通知主题
      * @param msg     通知内容
-     * @param actions 该通知所需操作(R -- 同意, A -- 同意 , W -- 查看)
+     * @param actions 该通知所需操作
      */
 
     public BaseNotificationItem(String topic, String msg, NotificationCommand... actions) {
