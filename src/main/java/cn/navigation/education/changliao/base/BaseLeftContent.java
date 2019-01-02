@@ -62,8 +62,5 @@ public abstract class BaseLeftContent {
 
     public void initData(Object data) {
     }
-    public  void updateUi(JsonObject d){
-
-
-    }
+    public  void updateUi(JsonObject d){ }
 }

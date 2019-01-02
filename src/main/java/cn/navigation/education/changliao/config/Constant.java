@@ -26,14 +26,16 @@ public class Constant {
     public static final String NICKNAME = "nickname";
     public static final String MESSAGE = "message";
     public static final String FROM = "from";
-    public static final String BODY ="body";
+    public static final String BODY = "body";
     public static final String TEXT = "text";
     public static final String TO = "to";
     public static final String UUID = "uuid";
-    public static final String STATUS ="status";
-    public static final String SUCCESS ="success";
+    public static final String STATUS = "status";
+    public static final String SUCCESS = "success";
     public static final String FAILED = "failed";
-    public static final JsonObject CURRENT_ACCOUNT =new JsonObject();
+    public static final JsonObject CURRENT_ACCOUNT = new JsonObject();
+    public static final String FRIEND = "friend";
+    public static final String REQUEST = "request";
 
 
 }

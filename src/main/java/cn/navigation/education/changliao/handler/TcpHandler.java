@@ -3,6 +3,7 @@ package cn.navigation.education.changliao.handler;
 import cn.navigation.education.changliao.base.BaseController;
 import cn.navigation.education.changliao.base.MessageHandler;
 import cn.navigation.education.changliao.component.ChatDialog;
+import cn.navigation.education.changliao.component.MailList;
 import cn.navigation.education.changliao.component.MessageList;
 import cn.navigation.education.changliao.controller.LoginController;
 import cn.navigation.education.changliao.controller.MainPageController;
@@ -115,6 +116,15 @@ public class TcpHandler extends AbstractVerticle {
             deliverMessage(data);
         }
 
+        if (type.equals(FRIEND)){
+            var controller = (MainPageController) CONTEXT.get(MainPageController.class.getName());
+            var mailList = (MailList)BASE_LEFT_CONTENT_MAP.get(MailList.class.getName());
+            controller.addNotification(data);
+            mailList.updateNotification();
+            System.out.println(data);
+
+        }
+
     }
 
     /**
@@ -122,7 +132,6 @@ public class TcpHandler extends AbstractVerticle {
      */
     private void deliverMessage(JsonObject data) {
 
-        System.out.println(data);
         var controller = (MainPageController) CONTEXT.get(MainPageController.class.getName());
         var messageList = BASE_LEFT_CONTENT_MAP.get(MessageList.class.getName());
         var chatDialog = MAIN_CONTENT_BASE_MAP.get(ChatDialog.class.getName());
@@ -134,6 +143,7 @@ public class TcpHandler extends AbstractVerticle {
         chatDialog.updateUi(data);
 
     }
+
 
     /**
      * 将消息发送给服务器

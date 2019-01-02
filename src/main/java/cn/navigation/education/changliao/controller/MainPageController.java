@@ -56,6 +56,8 @@ public class MainPageController extends BaseController implements Initializable 
     private List<BaseLeftContent> lists = new ArrayList<>();
     //消息列表
     private Map<String, JsonArray> messages = new HashMap<>();
+    //通知列表
+    private List<JsonObject> notifications = new ArrayList<>();
 
 
     @Override
@@ -101,6 +103,14 @@ public class MainPageController extends BaseController implements Initializable 
 
     }
 
+    /**
+     * 添加通知
+     * @param notification
+     */
+    public void addNotification(JsonObject notification){
+        notifications.add(notification);
+    }
+
     @Override
     public void updateUi(JsonObject data) {
         var type = data.getString(TYPE);
@@ -131,6 +141,7 @@ public class MainPageController extends BaseController implements Initializable 
         }
 
     }
+
 
     @Override
     public void initData(Object data) {
@@ -179,6 +190,16 @@ public class MainPageController extends BaseController implements Initializable 
             }
 
         });
+    }
+    /**
+     *
+     * 管理通知
+     *
+     */
+    public void handleNotification(MessageHandler<JsonObject> handler){
+        notifications.forEach(notification->
+            handler.handler(notification)
+        );
     }
 
     /**

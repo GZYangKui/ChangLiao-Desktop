@@ -12,7 +12,7 @@ import javafx.scene.layout.VBox;
 import java.util.Arrays;
 
 
-public abstract class BaseNotificationItem {
+public class BaseNotificationItem {
 
     protected HBox hBox = new HBox();
     protected HBox a = new HBox();
@@ -21,6 +21,8 @@ public abstract class BaseNotificationItem {
     private Label title = new Label();
     private ChoiceBox<String> choiceBox = new ChoiceBox<>();
     private Label msg;
+    //是否处理
+    private boolean isDeal = false;
 
     /**
      * @param topic   通知主题
@@ -50,7 +52,16 @@ public abstract class BaseNotificationItem {
         b.getChildren().add(choiceBox);
         a.prefWidthProperty().bind(hBox.widthProperty().multiply(0.5));
         b.prefWidthProperty().bind(hBox.widthProperty().multiply(0.49));
-        hBox.getChildren().addAll(a,b);
+        hBox.getChildren().addAll(a, b);
+
+        //处理选择事件
+        choiceBox.setOnAction(e -> {
+            isDeal = true;
+            var select = choiceBox.getValue();
+            var label = new Label(select);
+            b.getChildren().remove(0, b.getChildren().size());
+            b.getChildren().add(label);
+        });
 
     }
 
@@ -67,7 +78,8 @@ public abstract class BaseNotificationItem {
         }
 
     }
-    public HBox getNotification(){
+
+    public HBox getNotification() {
         return hBox;
     }
 }

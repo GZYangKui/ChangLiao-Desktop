@@ -12,9 +12,10 @@ import static cn.navigation.education.changliao.config.Constant.FRIENDS;
  */
 
 public class MailList extends BaseLeftContent {
+    private Notification notification = new Notification();
 
     public MailList() {
-        messageList.getItems().add(new Notification().getNotificationItem());
+        messageList.getItems().add(notification.getNotificationItem());
     }
 
 
@@ -31,4 +32,14 @@ public class MailList extends BaseLeftContent {
                 messageList.getItems().add(new MailListItem((JsonObject) action).getContent()
                 ));
     }
+
+    @Override
+    public void updateUi(JsonObject d) {
+    }
+
+    public void updateNotification() {
+        notification.addNotificationNumber();
+    }
+
+
 }

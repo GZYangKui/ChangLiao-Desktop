@@ -1,8 +1,15 @@
 package cn.navigation.education.changliao.component;
 
+import cn.navigation.education.changliao.base.BaseNotificationItem;
 import cn.navigation.education.changliao.base.MainContentBase;
+import cn.navigation.education.changliao.controller.MainPageController;
+import cn.navigation.education.changliao.enums.NotificationCommand;
 import com.jfoenix.controls.JFXListView;
 import javafx.scene.layout.StackPane;
+
+import static cn.navigation.education.changliao.base.BaseController.CONTEXT;
+import static cn.navigation.education.changliao.config.Constant.*;
+
 
 public class NotificationPane extends MainContentBase {
     private StackPane stackPane;
@@ -13,6 +20,18 @@ public class NotificationPane extends MainContentBase {
         stackPane = (StackPane) container.lookup("#stack");
         notificationList = (JFXListView) container.lookup("#notificationList");
         notificationList.setVisible(true);
-        notificationList.getItems().add(new FriendRequest().getNotification());
+        initData();
+    }
+
+    private void initData() {
+        var controller = (MainPageController) CONTEXT.get(MainPageController.class.getName());
+        controller.handleNotification(n -> {
+            if (n.getString(TYPE).equals(FRIEND) && n.getString(SUBTYPE).equals(REQUEST)) {
+                var notification = new BaseNotificationItem(n.getString(FROM), n.getString(MESSAGE),
+                        NotificationCommand.AGREE, NotificationCommand.REFUSE);
+                notificationList.getItems().add(notification.getNotification());
+            }
+        });
+
     }
 }
