@@ -19,7 +19,7 @@ public class NotificationPane extends MainContentBase {
         super("fxml/items/notification_pane.fxml");
         stackPane = (StackPane) container.lookup("#stack");
         notificationList = (JFXListView) container.lookup("#notificationList");
-        notificationList.setVisible(true);
+        notificationList.setStyle("-fx-background-color: #F5F5F5;");
         initData();
     }
 
@@ -37,6 +37,11 @@ public class NotificationPane extends MainContentBase {
                 notificationList.getItems().add(notification.getNotification());
             }
         });
+        if (notificationList.getItems().size() == 0){
+            notificationList.setVisible(false);
+            return;
+        }
+        notificationList.setVisible(true);
 
     }
 }
