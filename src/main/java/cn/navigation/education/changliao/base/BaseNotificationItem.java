@@ -2,6 +2,7 @@ package cn.navigation.education.changliao.base;
 
 import cn.navigation.education.changliao.enums.NotificationCommand;
 import cn.navigation.education.changliao.tool.AssetLoader;
+import io.vertx.core.json.JsonObject;
 import javafx.geometry.Pos;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
@@ -27,10 +28,11 @@ public class BaseNotificationItem {
     /**
      * @param topic   通知主题
      * @param msg     通知内容
+     * @param data    数据
      * @param actions 该通知所需操作
      */
 
-    public BaseNotificationItem(String topic, String msg, NotificationCommand... actions) {
+    public BaseNotificationItem(String topic, String msg, JsonObject data, NotificationCommand... actions) {
 
         title.setText(topic);
         var image = AssetLoader.loadAssetImage("images/icon.png", 30, 30);

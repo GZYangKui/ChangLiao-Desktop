@@ -27,8 +27,13 @@ public class NotificationPane extends MainContentBase {
         var controller = (MainPageController) CONTEXT.get(MainPageController.class.getName());
         controller.handleNotification(n -> {
             if (n.getString(TYPE).equals(FRIEND) && n.getString(SUBTYPE).equals(REQUEST)) {
-                var notification = new BaseNotificationItem(n.getString(FROM), n.getString(MESSAGE),
-                        NotificationCommand.AGREE, NotificationCommand.REFUSE);
+                var notification = new BaseNotificationItem(
+                        n.getString(FROM),
+                        n.getString(MESSAGE),
+                        n,
+                        NotificationCommand.AGREE,
+                        NotificationCommand.REFUSE
+                );
                 notificationList.getItems().add(notification.getNotification());
             }
         });
