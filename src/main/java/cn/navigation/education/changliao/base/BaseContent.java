@@ -7,13 +7,17 @@ import javafx.scene.layout.BorderPane;
 import java.util.Map;
 import java.util.WeakHashMap;
 
-public abstract class MainContentBase {
+import static cn.navigation.education.changliao.config.Constant.CURRENT_CONTENT;
+
+public abstract class BaseContent {
     protected BorderPane container;
 
-    public static final Map<String,MainContentBase> MAIN_CONTENT_BASE_MAP = new WeakHashMap<>();
+    public static final Map<String, BaseContent> BASE_CONTENT = new WeakHashMap<>();
 
-    public MainContentBase(String fxml) {
-        MAIN_CONTENT_BASE_MAP.put(this.getClass().getName(),this);
+    public BaseContent(String fxml) {
+
+        BASE_CONTENT.put(CURRENT_CONTENT, this);
+
         var root = AssetLoader.loadLayout(fxml);
         container = (BorderPane) root.lookup("#container");
     }
@@ -22,6 +26,7 @@ public abstract class MainContentBase {
         return container;
     }
 
-    public void updateUi(JsonObject m){}
+    public void updateUi(JsonObject m) {
+    }
 
 }

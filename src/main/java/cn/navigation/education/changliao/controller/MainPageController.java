@@ -207,7 +207,7 @@ public class MainPageController extends BaseController implements Initializable 
      *
      * @param
      */
-    public void setContent(MainContentBase base) {
+    public void setContent(BaseContent base) {
         //移除内容面板
         content.getChildren().remove(0, content.getChildren().size());
         //将新面板的高度绑定

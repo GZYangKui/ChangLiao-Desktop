@@ -1,6 +1,6 @@
 package cn.navigation.education.changliao.component;
 
-import cn.navigation.education.changliao.base.MainContentBase;
+import cn.navigation.education.changliao.base.BaseContent;
 import cn.navigation.education.changliao.controller.MainPageController;
 import com.jfoenix.controls.JFXButton;
 import io.vertx.core.json.JsonObject;
@@ -10,7 +10,7 @@ import static cn.navigation.education.changliao.base.BaseController.CONTEXT;
 import static cn.navigation.education.changliao.config.Constant.ID;
 import static cn.navigation.education.changliao.config.Constant.NICKNAME;
 
-public class MailDetail extends MainContentBase {
+public class MailDetail extends BaseContent {
 
     public MailDetail(JsonObject o) {
         super("fxml/items/mail_detail.fxml");

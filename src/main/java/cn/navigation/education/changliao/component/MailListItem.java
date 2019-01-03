@@ -1,6 +1,6 @@
 package cn.navigation.education.changliao.component;
 
-import cn.navigation.education.changliao.base.MainContentBase;
+import cn.navigation.education.changliao.base.BaseContent;
 import cn.navigation.education.changliao.controller.MainPageController;
 import cn.navigation.education.changliao.tool.AssetLoader;
 import io.vertx.core.json.JsonObject;
@@ -33,7 +33,7 @@ public class MailListItem {
         box.getChildren().addAll(icon, nickName);
         box.setOnMouseClicked(e -> {
             MainPageController controller = (MainPageController) CONTEXT.get(MainPageController.class.getName());
-            MainContentBase contentBase = new MailDetail(user);
+            BaseContent contentBase = new MailDetail(user);
             controller.setContent(contentBase);
         });
     }

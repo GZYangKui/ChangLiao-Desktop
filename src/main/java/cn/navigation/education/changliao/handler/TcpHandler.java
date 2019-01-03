@@ -1,10 +1,12 @@
 package cn.navigation.education.changliao.handler;
 
+
 import cn.navigation.education.changliao.base.BaseController;
 import cn.navigation.education.changliao.base.MessageHandler;
 import cn.navigation.education.changliao.component.ChatDialog;
 import cn.navigation.education.changliao.component.MailList;
 import cn.navigation.education.changliao.component.MessageList;
+import cn.navigation.education.changliao.component.NotificationPane;
 import cn.navigation.education.changliao.controller.LoginController;
 import cn.navigation.education.changliao.controller.MainPageController;
 import io.vertx.core.AbstractVerticle;
@@ -18,9 +20,9 @@ import javafx.application.Platform;
 
 import java.util.concurrent.CompletableFuture;
 
+import static cn.navigation.education.changliao.base.BaseContent.BASE_CONTENT;
 import static cn.navigation.education.changliao.base.BaseController.CONTEXT;
 import static cn.navigation.education.changliao.base.BaseLeftContent.BASE_LEFT_CONTENT_MAP;
-import static cn.navigation.education.changliao.base.MainContentBase.MAIN_CONTENT_BASE_MAP;
 import static cn.navigation.education.changliao.config.Constant.*;
 
 
@@ -116,13 +118,8 @@ public class TcpHandler extends AbstractVerticle {
             deliverMessage(data);
         }
 
-        if (type.equals(FRIEND)){
-            var controller = (MainPageController) CONTEXT.get(MainPageController.class.getName());
-            var mailList = (MailList)BASE_LEFT_CONTENT_MAP.get(MailList.class.getName());
-            controller.addNotification(data);
-            mailList.updateNotification();
-            System.out.println(data);
-
+        if (type.equals(FRIEND)) {
+            deliverNotification(data);
         }
 
     }
@@ -134,13 +131,46 @@ public class TcpHandler extends AbstractVerticle {
 
         var controller = (MainPageController) CONTEXT.get(MainPageController.class.getName());
         var messageList = BASE_LEFT_CONTENT_MAP.get(MessageList.class.getName());
-        var chatDialog = MAIN_CONTENT_BASE_MAP.get(ChatDialog.class.getName());
         //将消息转发到主界面中去
         controller.updateUi(data);
         //将消息更新到消息列表
         messageList.updateUi(data);
+
         //将消息发送自当前聊天框
-        chatDialog.updateUi(data);
+        var content = BASE_CONTENT.get(CURRENT_CONTENT);
+
+        if (content instanceof ChatDialog) {
+
+            ChatDialog chatDialog = (ChatDialog) content;
+            var from = data.getString(FROM);
+            //如果消息不是来自于当前聊天好友或者当前账号，不是则不做任何事
+            if (!from.equals(chatDialog.getId()) && !from.equals(CURRENT_ACCOUNT.getString(ID))) {
+                return;
+            }
+            chatDialog.updateUi(data);
+        }
+
+    }
+
+    /**
+     * 分发通知
+     * @param data
+     */
+    private void deliverNotification(JsonObject data){
+        var controller = (MainPageController) CONTEXT.get(MainPageController.class.getName());
+
+        var mailList = (MailList) BASE_LEFT_CONTENT_MAP.get(MailList.class.getName());
+
+        controller.addNotification(data);
+
+        var content = BASE_CONTENT.get(CURRENT_CONTENT);
+
+        if (!(content instanceof NotificationPane)){
+            mailList.updateNotification();
+            return;
+        }
+        var pane = (NotificationPane)content;
+        pane.updateUi(data);
 
     }
 

@@ -2,7 +2,7 @@ package cn.navigation.education.changliao.component;
 
 import cn.navigation.education.changliao.MainVerticle;
 import cn.navigation.education.changliao.base.BaseLeftContent;
-import cn.navigation.education.changliao.base.MainContentBase;
+import cn.navigation.education.changliao.base.BaseContent;
 import cn.navigation.education.changliao.controller.MainPageController;
 import cn.navigation.education.changliao.enums.MessageSource;
 import cn.navigation.education.changliao.enums.MessageType;
@@ -26,7 +26,7 @@ import static cn.navigation.education.changliao.config.Constant.*;
 /**
  * 聊天对话框
  */
-public class ChatDialog extends MainContentBase {
+public class ChatDialog extends BaseContent {
     private VBox content = new VBox();
     private final String id;
     private ScrollPane messageDialog;
@@ -136,14 +136,8 @@ public class ChatDialog extends MainContentBase {
 
     @Override
     public void updateUi(JsonObject m) {
+
         var from = m.getString(FROM);
-
-
-        //如果消息不是来自于当前聊天好友或者当前账号，不是则不做任何事
-        if (!from.equals(id) && !from.equals(CURRENT_ACCOUNT.getString(ID))) {
-            return;
-        }
-
         var body = m.getString(BODY);
 
         Platform.runLater(() -> {
@@ -157,5 +151,8 @@ public class ChatDialog extends MainContentBase {
         });
 
 
+    }
+    public String getId(){
+        return id;
     }
 }
