@@ -17,5 +17,15 @@ jdk版本不能低于10否则无法正常运行，建议使用jdk11
 
 ![platform](https://github.com/GZYangKui/ChangLiao/blob/master/SNAPSHOT-SHOOT/4.png)
 
+![platform](https://github.com/GZYangKui/ChangLiao/blob/master/SNAPSHOT-SHOOT/5.png)
+
+![platform](https://github.com/GZYangKui/ChangLiao/blob/master/SNAPSHOT-SHOOT/6.png)
+
+![platform](https://github.com/GZYangKui/ChangLiao/blob/master/SNAPSHOT-SHOOT/7.png)
+
+![platform](https://github.com/GZYangKui/ChangLiao/blob/master/SNAPSHOT-SHOOT/8.png)
+
+![platform](https://github.com/GZYangKui/ChangLiao/blob/master/SNAPSHOT-SHOOT/9.png)
+
 
 
