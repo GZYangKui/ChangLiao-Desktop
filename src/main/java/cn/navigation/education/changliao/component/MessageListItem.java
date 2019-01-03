@@ -29,6 +29,12 @@ public class MessageListItem {
     //用户昵称
     private Label nickName = new Label();
 
+    private HBox h = new HBox();
+
+    private Label futureNumber = new Label();
+
+    private int number = 0;
+
     /**
      * @param id  用户id
      * @param msg 最新消息
@@ -52,19 +58,46 @@ public class MessageListItem {
 
         v.getChildren().addAll(nickName, t);
 
-        hBox.getChildren().addAll(icon, v);
+        hBox.getChildren().addAll(icon, v, h);
+
+        h.setAlignment(Pos.CENTER_RIGHT);
+        h.getChildren().add(futureNumber);
+        futureNumber.setStyle(
+                "-fx-border-width: 1px;" +
+                        "-fx-border-color: red;" +
+                        "-fx-border-radius: 5px;" +
+                        "-fx-padding: 5px;"
+        );
+        futureNumber.setVisible(false);
 
         t.prefWidthProperty().bind(hBox.widthProperty().multiply(0.7));
         nickName.prefWidthProperty().bind(hBox.widthProperty().multiply(0.7));
 
+        h.prefWidthProperty().bind(hBox.widthProperty().multiply(0.2));
+        v.prefWidthProperty().bind(hBox.widthProperty().multiply(0.5));
+
+
         hBox.setOnMouseClicked(e -> {
             MainPageController controller = (MainPageController) CONTEXT.get(MainPageController.class.getName());
             controller.setContent(new ChatDialog(id));
+            //置空未读信息
+            number = 0;
+            futureNumber.setVisible(false);
         });
     }
 
     public String getId() {
         return id;
+    }
+
+    public MessageListItem addFutureNumber() {
+        Platform.runLater(() -> {
+            futureNumber.setText(String.valueOf(++number));
+
+            if (!futureNumber.isVisible())
+                futureNumber.setVisible(true);
+        });
+        return this;
     }
 
     public void updateMsg(String msg) {

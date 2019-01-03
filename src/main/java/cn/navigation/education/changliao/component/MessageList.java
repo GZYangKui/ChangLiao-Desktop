@@ -13,8 +13,8 @@ import javafx.scene.layout.HBox;
 import java.util.ArrayList;
 import java.util.List;
 
-import static cn.navigation.education.changliao.config.Constant.BODY;
-import static cn.navigation.education.changliao.config.Constant.FROM;
+import static cn.navigation.education.changliao.base.BaseContent.BASE_CONTENT;
+import static cn.navigation.education.changliao.config.Constant.*;
 
 /**
  * 消息列表
@@ -66,17 +66,27 @@ public class MessageList extends BaseLeftContent {
 
         var nickName = d.getString(FROM);
         var body = d.getString(BODY);
+        boolean isCurrentUser = true;
+
+        //判断当前聊天窗口是否该好友
+        if (!(BASE_CONTENT.get(CURRENT_CONTENT) instanceof ChatDialog &&
+                ((ChatDialog) BASE_CONTENT.get(CURRENT_CONTENT)).getId().equals(nickName))) {
+            isCurrentUser = false;
+        }
         //遍历是该消息条目是否存在，如果存在更新为最新消息
         for (MessageListItem i : items) {
-
             if (i.getId().equals(nickName)) {
                 i.updateMsg(body);
+                if (!isCurrentUser)
+                    i.addFutureNumber();
                 return;
             }
         }
 
         //如果不存在，新建消息条目
         var item = new MessageListItem(nickName, body);
+        if (!isCurrentUser)
+            item.addFutureNumber();
         items.add(item);
         Platform.runLater(() ->
                 messageList.getItems().add(item.getMessageListItem())

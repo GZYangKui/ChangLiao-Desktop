@@ -130,7 +130,7 @@ public class TcpHandler extends AbstractVerticle {
     private void deliverMessage(JsonObject data) {
 
         var controller = (MainPageController) CONTEXT.get(MainPageController.class.getName());
-        var messageList = BASE_LEFT_CONTENT_MAP.get(MessageList.class.getName());
+        var messageList = (MessageList)BASE_LEFT_CONTENT_MAP.get(MessageList.class.getName());
         //将消息转发到主界面中去
         controller.updateUi(data);
         //将消息更新到消息列表
@@ -145,6 +145,7 @@ public class TcpHandler extends AbstractVerticle {
             var from = data.getString(FROM);
             //如果消息不是来自于当前聊天好友或者当前账号，不是则不做任何事
             if (!from.equals(chatDialog.getId()) && !from.equals(CURRENT_ACCOUNT.getString(ID))) {
+
                 return;
             }
             chatDialog.updateUi(data);
