@@ -48,9 +48,8 @@ public class NotificationPane extends BaseContent {
     }
 
     public void updateUi(JsonObject data) {
-        Platform.runLater(() -> {
-                    addNotification(data);
-                }
+        Platform.runLater(() ->
+                addNotification(data)
         );
     }
 }
