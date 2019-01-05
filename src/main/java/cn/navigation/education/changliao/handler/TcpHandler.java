@@ -190,7 +190,6 @@ public class TcpHandler extends AbstractVerticle {
                 socket.write(msg.toBuffer().appendString(END));
             }
         } catch (Exception e) {
-            System.out.println("发送消息失败:" + e.getMessage());
             result.put(STATUS, FAILED);
             result.put(MESSAGE, "发送消息失败:" + e.getMessage());
         }
