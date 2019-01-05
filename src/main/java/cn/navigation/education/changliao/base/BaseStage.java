@@ -30,12 +30,7 @@ public abstract class BaseStage extends Stage {
 
     public BaseStage(String fxml) {
         STAGE_CONTEXT.put(this.getClass().getName(), this);
-        Parent root = null;
-        try {
-            root = FXMLLoader.load(ClassLoader.getSystemResource(fxml));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        Parent root = AssetLoader.loadLayout(fxml);
         var topBox = root.lookup("#topBox");
         scene = new Scene(root);
         setScene(scene);

@@ -8,13 +8,17 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Background;
 import javafx.scene.layout.HBox;
 import javafx.scene.shape.Circle;
+import javafx.scene.shape.Rectangle;
+
+import java.awt.*;
 
 public class TextMessage extends Message {
 
-    public TextMessage(Object msg, MessageType type,MessageSource source, ScrollPane scroll) {
-        super(msg,source,type,scroll);
+    public TextMessage(Object msg, MessageType type, MessageSource source, ScrollPane scroll) {
+        super(msg, source, type, scroll);
         initView();
     }
 
@@ -32,6 +36,8 @@ public class TextMessage extends Message {
 
         box.setSpacing(10);
         var k = new HBox();
+
+
         //发起方
         if (source == MessageSource.FRIEND) {
 
@@ -44,17 +50,18 @@ public class TextMessage extends Message {
             text.setTranslateX(-1.0f);
             //接收方
             k.getChildren().addAll(text, header);
+
         }
-        k.maxWidthProperty().bind(scroll.widthProperty().multiply(0.6));
-        k.setSpacing(10);
 
         text.setStyle(
-
-                "-fx-border-width: 1px;" +
-                        "-fx-border-color: red;" +
-                        "-fx-border-radius: 5px;-fx-padding: 10px;" +
-                        "-fx-wrap-text: true;-fx-font-size: 17px;"
+                "-fx-padding: 10px;" +
+                        "-fx-wrap-text: true;" +
+                        "-fx-font-size: 17px;" +
+                        "-fx-background-color:" + (source == MessageSource.FRIEND ? "#FFFFFF" : "#98E165")
         );
+
+        k.maxWidthProperty().bind(scroll.widthProperty().multiply(0.6));
+        k.setSpacing(10);
 
         box.getChildren().add(k);
 

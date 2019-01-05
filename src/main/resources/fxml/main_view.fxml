@@ -133,7 +133,17 @@
     <center>
         <VBox BorderPane.alignment="TOP_CENTER" alignment="TOP_CENTER" styleClass="center_box">
             <fx:include source="items/header.fxml" fx:id="topBox"/>
-            <VBox fx:id="content" minHeight="100" alignment="CENTER"></VBox>
+            <VBox fx:id="content" minHeight="100" alignment="CENTER">
+                <BorderPane>
+                    <center>
+                        <ImageView>
+                            <image>
+                                <Image url="@../assets/images/icon.png" requestedHeight="100" requestedWidth="100"/>
+                            </image>
+                        </ImageView>
+                    </center>
+                </BorderPane>
+            </VBox>
         </VBox>
     </center>
 
