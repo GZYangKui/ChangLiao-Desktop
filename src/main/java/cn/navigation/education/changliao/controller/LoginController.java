@@ -1,15 +1,12 @@
 package cn.navigation.education.changliao.controller;
 
 import cn.navigation.education.changliao.base.BaseController;
-import cn.navigation.education.changliao.enums.StageCloseStrategy;
 import cn.navigation.education.changliao.handler.TcpHandler;
-import cn.navigation.education.changliao.pages.Login;
 import cn.navigation.education.changliao.pages.MainPage;
 import cn.navigation.education.changliao.tool.AssetLoader;
 import cn.navigation.education.changliao.utils.StringUtils;
 import com.jfoenix.controls.JFXButton;
 import io.vertx.core.json.JsonObject;
-import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
@@ -28,7 +25,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import static cn.navigation.education.changliao.config.Constant.*;
-import static cn.navigation.education.changliao.MainVerticle.vertx;
+import static cn.navigation.education.changliao.MainApp.vertx;
 
 public class LoginController extends BaseController implements Initializable {
     @FXML

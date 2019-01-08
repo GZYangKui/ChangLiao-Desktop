@@ -1,6 +1,6 @@
 package cn.navigation.education.changliao.component;
 
-import cn.navigation.education.changliao.MainVerticle;
+import cn.navigation.education.changliao.MainApp;
 import cn.navigation.education.changliao.base.BaseLeftContent;
 import cn.navigation.education.changliao.base.BaseContent;
 import cn.navigation.education.changliao.controller.MainPageController;
@@ -88,7 +88,7 @@ public class ChatDialog extends BaseContent {
                     .put(UUID, java.util.UUID.randomUUID().toString())
                     .put(VERSION, CURRENT_VERSION);
 
-            MainVerticle.vertx.eventBus().send(TcpHandler.class.getName(), message, rs -> {
+            MainApp.vertx.eventBus().send(TcpHandler.class.getName(), message, rs -> {
                 if (!rs.succeeded()) {
                     System.out.println("消息发送失败:" + rs.cause());
                     return;

@@ -10,12 +10,12 @@ import javafx.application.Platform;
 
 import static cn.navigation.education.changliao.config.Constant.VERTICLE_CONFIG;
 
-public class MainVerticle {
+public class MainApp {
 
     public static Vertx vertx = Vertx.vertx();
 
 
-    public  MainVerticle() {
+    public MainApp() {
         //启动javafx线程
         Platform.startup(() -> new Login());
         //部署Vertice
@@ -29,6 +29,6 @@ public class MainVerticle {
     }
 
     static public void main(String... args) {
-        new MainVerticle();
+        new MainApp();
     }
 }
