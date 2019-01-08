@@ -1,14 +1,16 @@
-# 畅聊
+# ChangLiao
 
-#### 介绍
-仿照微信客户端（PC版),使用javafx开发。
+#### introduce
+
+Simulate the Wechat Client (PC version), using JavaFX development.
 
 
-#### 使用说明
+#### Instructions
 
-jdk版本不能低于10否则无法正常运行，建议使用jdk11
+JDK version should not be less than 10 or it will not work properly. jdk11 is recommended
 
-#### 部分程序截图
+#### Partial program screenshots
+
 ![platform](https://github.com/GZYangKui/ChangLiao/blob/master/SNAPSHOT-SHOOT/2.png)
 
 ![platform](https://github.com/GZYangKui/ChangLiao/blob/master/SNAPSHOT-SHOOT/3.png)
