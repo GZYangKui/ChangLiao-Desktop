@@ -7,11 +7,11 @@ import cn.navigation.education.changliao.component.MailList;
 import cn.navigation.education.changliao.component.MessageList;
 import cn.navigation.education.changliao.component.MorePane;
 import cn.navigation.education.changliao.model.Position;
+import cn.navigation.education.changliao.pages.Individual;
 import cn.navigation.education.changliao.pages.MainPage;
 import com.jfoenix.controls.JFXButton;
 import io.vertx.core.json.JsonArray;
 import io.vertx.core.json.JsonObject;
-import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Pagination;
@@ -22,7 +22,6 @@ import java.net.URL;
 import java.util.*;
 import java.util.concurrent.CompletableFuture;
 
-import static cn.navigation.education.changliao.base.BaseStage.STAGE_CONTEXT;
 import static cn.navigation.education.changliao.config.Constant.*;
 
 public class MainPageController extends BaseController implements Initializable {
@@ -52,6 +51,8 @@ public class MainPageController extends BaseController implements Initializable 
     private VBox content;
     @FXML
     private JFXButton moreFunction;
+    @FXML
+    private JFXButton individual;
 
     private List<BaseLeftContent> lists = new ArrayList<>();
     //消息列表
@@ -83,16 +84,6 @@ public class MainPageController extends BaseController implements Initializable 
     }
 
     private void event() {
-        close.setOnAction(e -> {
-            Platform.exit();
-            System.exit(0);
-        });
-        minimize.setOnAction(e -> STAGE_CONTEXT.get(MainPage.class.getName()).setIconified(true));
-        maximization.setOnAction(e -> {
-            BaseStage stage = (BaseStage) STAGE_CONTEXT.get(MainPage.class.getName());
-            stage.setWindowSize();
-        });
-
         chat.setOnAction(e -> pagination.setCurrentPageIndex(0));
         addressList.setOnAction(e -> pagination.setCurrentPageIndex(1));
         collection.setOnAction(e -> pagination.setCurrentPageIndex(2));
@@ -100,14 +91,16 @@ public class MainPageController extends BaseController implements Initializable 
             var p = new Position(e.getScreenX(), e.getScreenY());
             new MorePane(p).show(moreFunction.getScene().getWindow());
         });
+        individual.setOnAction(e -> new Individual());
 
     }
 
     /**
      * 添加通知
+     *
      * @param notification
      */
-    public void addNotification(JsonObject notification){
+    public void addNotification(JsonObject notification) {
         notifications.add(notification);
     }
 
@@ -191,14 +184,13 @@ public class MainPageController extends BaseController implements Initializable 
 
         });
     }
+
     /**
-     *
      * 管理通知
-     *
      */
-    public void handleNotification(MessageHandler<JsonObject> handler){
-        notifications.forEach(notification->
-            handler.handler(notification)
+    public void handleNotification(MessageHandler<JsonObject> handler) {
+        notifications.forEach(notification ->
+                handler.handler(notification)
         );
     }
 

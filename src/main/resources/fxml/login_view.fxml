@@ -13,7 +13,7 @@
         <URL value="@../css/login_style.css"></URL>
     </stylesheets>
     <top>
-        <HBox fx:id="topBox">
+        <HBox fx:id="topBox_1">
             <children>
                 <HBox fx:id="titleBox" alignment="CENTER_LEFT">
                     <padding>
@@ -23,7 +23,7 @@
                         <Label text="畅聊" styleClass="title"/>
                     </children>
                 </HBox>
-                <fx:include source="items/header.fxml" fx:id="topControllerBar"/>
+                <fx:include source="items/header.fxml" fx:id="topBox"/>
             </children>
         </HBox>
     </top>

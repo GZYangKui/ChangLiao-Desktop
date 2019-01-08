@@ -1,6 +1,7 @@
 package cn.navigation.education.changliao.controller;
 
 import cn.navigation.education.changliao.base.BaseController;
+import cn.navigation.education.changliao.enums.StageCloseStrategy;
 import cn.navigation.education.changliao.handler.TcpHandler;
 import cn.navigation.education.changliao.pages.Login;
 import cn.navigation.education.changliao.pages.MainPage;
@@ -26,17 +27,16 @@ import org.controlsfx.control.Notifications;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import static cn.navigation.education.changliao.base.BaseStage.STAGE_CONTEXT;
 import static cn.navigation.education.changliao.config.Constant.*;
 import static cn.navigation.education.changliao.MainVerticle.vertx;
 
 public class LoginController extends BaseController implements Initializable {
     @FXML
-    private HBox topBox;
+    private HBox topBox_1;
     @FXML
     private HBox titleBox;
     @FXML
-    private HBox topControllerBar;
+    private HBox topBox;
     @FXML
     private Pagination pagination;
 
@@ -57,12 +57,12 @@ public class LoginController extends BaseController implements Initializable {
     }
 
     public void initView() {
-        titleBox.prefWidthProperty().bind(topBox.widthProperty().multiply(0.5));
-        topControllerBar.prefWidthProperty().bind(topBox.widthProperty().multiply(0.5));
+        titleBox.prefWidthProperty().bind(topBox_1.widthProperty().multiply(0.2));
+        topBox.prefWidthProperty().bind(topBox_1.widthProperty().multiply(0.8));
         //移除最大化图标
-        topControllerBar.getChildren().remove(1);
-        close = (JFXButton) topControllerBar.lookup("#close");
-        minimize = (JFXButton) topControllerBar.lookup("#minimize");
+        topBox.getChildren().remove(1);
+        close = (JFXButton) topBox.lookup("#close");
+        minimize = (JFXButton) topBox.lookup("#minimize");
         QRCodeLoginPane = (BorderPane) AssetLoader.loadLayout("fxml/items/qr_code_login.fxml").lookup("#container");
         accountLogin = (BorderPane) AssetLoader.loadLayout("fxml/items/account_login.fxml").lookup("#container");
         password = (PasswordField) accountLogin.lookup("#password");
@@ -82,14 +82,6 @@ public class LoginController extends BaseController implements Initializable {
     }
 
     private void event() {
-        close.setOnAction(e -> {
-            Platform.exit();
-            System.exit(1);
-        });
-        minimize.setOnAction(e -> {
-            var stage = STAGE_CONTEXT.get(Login.class.getName());
-            stage.setIconified(true);
-        });
         /**
          * 切换到账号登陆
          */
@@ -112,8 +104,8 @@ public class LoginController extends BaseController implements Initializable {
         data.put(SUBTYPE, LOGIN);
         data.put(PASSWORD, StringUtils.toMd5(password.getText()));
         data.put(ID, userName.getText());
-        vertx.eventBus().send(TcpHandler.class.getName(), data,ar->{
-            if (!ar.succeeded()){
+        vertx.eventBus().send(TcpHandler.class.getName(), data, ar -> {
+            if (!ar.succeeded()) {
                 System.out.println("连接服务器失败:" + ar.cause());
                 return;
             }

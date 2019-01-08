@@ -7,9 +7,7 @@ import cn.navigation.education.changliao.base.BaseStage;
  */
 public class Backup extends BaseStage {
     public Backup() {
-        super("fxml/backup_view.fxml");
-        setWidth(500);
-        setHeight(400);
-        centerOnScreen();
+        super("fxml/backup_view.fxml",500,400);
+
     }
 }

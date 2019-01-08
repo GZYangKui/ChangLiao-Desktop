@@ -30,7 +30,7 @@
                             <padding>
                                 <Insets top="5" right="5" bottom="5" left="5"/>
                             </padding>
-                            <JFXButton>
+                            <JFXButton fx:id="individual">
                                 <tooltip>
                                     <Tooltip text="骄阳似火"/>
                                 </tooltip>
