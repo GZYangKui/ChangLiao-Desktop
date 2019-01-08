@@ -16,9 +16,6 @@ import java.util.ResourceBundle;
 
 public class IndividualController extends BaseController implements Initializable {
 
-    private JFXButton minimize;
-    private JFXButton close;
-    private JFXButton maximization;
     @FXML
     private BorderPane container;
     @FXML
