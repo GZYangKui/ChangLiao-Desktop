@@ -15,7 +15,7 @@ public class MainVerticle {
     public static Vertx vertx = Vertx.vertx();
 
 
-    public MainVerticle() {
+    public  MainVerticle() {
         //启动javafx线程
         Platform.startup(() -> new Login());
         //部署Vertice
