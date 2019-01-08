@@ -17,7 +17,7 @@ public class MainApp {
 
     public MainApp() {
         //启动javafx线程
-        Platform.startup(() -> new Login());
+        Platform.startup(Login::new);
         //部署Vertice
         deploymentVertical();
     }
