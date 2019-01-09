@@ -3,3 +3,22 @@
     -fx-background-repeat: no-repeat;
     -fx-background-size: cover;
 }
+.star_number{
+    -fx-background-color: transparent;
+    -fx-padding: 10px 15px 10px 15px;
+}
+.left_bottom_box{
+    -fx-background-color: #3E4D4E;
+}
+.left_bottom_box Label{
+    -fx-text-fill: #FFFF;
+}
+.nickname_style{
+    -fx-font-size: 20px;
+}
+.sign_style{
+    -fx-font-size: 14px;
+}
+.right_box_style{
+    -fx-background-color: #FFFF;
+}

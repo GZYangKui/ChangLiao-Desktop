@@ -8,6 +8,7 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.control.Label?>
 <?import java.net.URL?>
+<?import javafx.scene.control.Tooltip?>
 <BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="cn.navigation.education.changliao.controller.IndividualController"
@@ -21,14 +22,28 @@
     <center>
         <HBox fx:id="content">
             <children>
-                <VBox fx:id="leftBox" style="-fx-border-color: red;-fx-border-width: 1px">
+                <VBox fx:id="leftBox">
                     <children>
                         <StackPane fx:id="leftTopContent" styleClass="left_stack_pane">
+                            <JFXButton StackPane.alignment="BOTTOM_RIGHT" text="3486" styleClass="star_number"
+                                       fx:id="star" contentDisplay="TOP">
+                                <graphic>
+                                    <ImageView>
+                                        <image>
+                                            <Image url="@../assets/images/star.png" requestedWidth="30"
+                                                   requestedHeight="30"/>
+                                        </image>
+                                    </ImageView>
+                                </graphic>
+                            </JFXButton>
 
                         </StackPane>
-                        <HBox alignment="CENTER" fx:id="leftBottomContent">
+                        <HBox alignment="CENTER" fx:id="leftBottomContent" styleClass="left_bottom_box">
                             <children>
                                 <JFXButton>
+                                    <tooltip>
+                                        <Tooltip text="点击更换头像"></Tooltip>
+                                    </tooltip>
                                     <clip>
                                         <Circle radius="25" centerX="35" centerY="35"/>
                                     </clip>
@@ -36,20 +51,20 @@
                                         <ImageView>
                                             <image>
                                                 <Image url="@../assets/images/header.jpg" requestedHeight="70"
-                                                       requestedWidth="70"/>
+                                                       requestedWidth="70" smooth="true"/>
                                             </image>
                                         </ImageView>
                                     </graphic>
                                 </JFXButton>
-                                <VBox alignment="CENTER">
-                                    <Label fx:id="username" text="骄阳似火"></Label>
-                                    <Label text="认真你就输了，一直认真你就赢了。"></Label>
+                                <VBox alignment="CENTER_LEFT">
+                                    <Label fx:id="username" text="骄阳似火" styleClass="nickname_style"></Label>
+                                    <Label text="认真你就输了，一直认真你就赢了。" fx:id="sign" styleClass="sign_style"></Label>
                                 </VBox>
                             </children>
                         </HBox>
                     </children>
                 </VBox>
-                <VBox fx:id="rightBox" style="-fx-border-color: green;-fx-border-width: 1px"></VBox>
+                <VBox fx:id="rightBox" styleClass="right_box_style"></VBox>
             </children>
         </HBox>
     </center>
