@@ -1,0 +1,22 @@
+.action {
+
+    -fx-border-width: 2px;
+    -fx-border-color: grey;
+    -fx-font-size: 16px;
+}
+
+.image_pane {
+    -fx-pref-height: 400px;
+    -fx-background-repeat: no-repeat;
+    -fx-background-image: url(/assets/images/header.jpg);
+    -fx-background-size: cover;
+}
+
+#upload {
+    -fx-background-color: #0EABE6;
+    -fx-text-fill: #FFFF;
+}
+
+.image_action {
+    -fx-padding: 2px;
+}

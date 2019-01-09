@@ -3,6 +3,7 @@ package cn.navigation.education.changliao.controller;
 import cn.navigation.education.changliao.base.BaseController;
 import cn.navigation.education.changliao.component.PopStar;
 import cn.navigation.education.changliao.model.Position;
+import cn.navigation.education.changliao.skin.ModifyPortrait;
 import com.jfoenix.controls.JFXButton;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -29,6 +30,8 @@ public class IndividualController extends BaseController implements Initializabl
     private HBox leftBottomContent;
     @FXML
     private JFXButton star;
+    @FXML
+    private JFXButton modify;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -56,5 +59,6 @@ public class IndividualController extends BaseController implements Initializabl
             position.setX(e.getScreenX());
             new PopStar(position).show(star.getScene().getWindow());
         });
+        modify.setOnAction(e->new ModifyPortrait());
     }
 }

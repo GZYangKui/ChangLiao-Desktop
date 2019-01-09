@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<?import javafx.scene.layout.*?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.geometry.Insets?>
+<?import java.net.URL?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.control.Spinner?>
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="cn.navigation.education.changliao.controller.ModifyPortraitController"
+            fx:id="container">
+    <stylesheets>
+        <URL value="@../css/modify_portrait_style.css"></URL>
+    </stylesheets>
+    <top>
+        <VBox spacing="20">
+            <fx:include source="items/header.fxml" fx:id="topBox"/>
+            <HBox spacing="10">
+                <padding>
+                    <Insets fx:id="contentPadding" top="10" bottom="10" left="10" right="10"/>
+                </padding>
+                <JFXButton text="本地上传" fx:id="localUpload" styleClass="action" contentDisplay="LEFT">
+                    <graphic>
+                        <ImageView>
+                            <image>
+                                <Image url="@../assets/images/upload.png" requestedHeight="20" requestedWidth="25"/>
+                            </image>
+                        </ImageView>
+                    </graphic>
+                </JFXButton>
+                <JFXButton text="精选头像" fx:id="selectedPortrait" styleClass="action"></JFXButton>
+            </HBox>
+        </VBox>
+    </top>
+    <center>
+        <VBox>
+            <StackPane fx:id="stackPane" styleClass="image_pane">
+
+            </StackPane>
+            <HBox>
+                <HBox spacing="5" padding="${contentPadding}">
+                    <JFXButton text="-" styleClass="action,image_action"/>
+                    <JFXButton text="+" styleClass="action,image_action"/>
+                </HBox>
+            </HBox>
+        </VBox>
+    </center>
+    <bottom>
+        <HBox alignment="CENTER_RIGHT" spacing="10" padding="${contentPadding}">
+            <JFXButton text="确定" styleClass="action" fx:id="upload"/>
+            <JFXButton text="取消" styleClass="action" fx:id="cancel"/>
+        </HBox>
+    </bottom>
+
+</BorderPane>

@@ -63,6 +63,5 @@ public class TextMessage extends Message {
 
         box.getChildren().add(k);
 
-
     }
 }

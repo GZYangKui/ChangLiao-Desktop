@@ -37,7 +37,7 @@ public class PopStarSkin implements Skin<PopStar> {
                     Platform.runLater(() -> popStar.hide());
                     return;
                 }
-                //每次向上移动10
+                //每次向上移动30
                 Platform.runLater(() -> popStar.setY(popStar.getY() - 30));
             }
 

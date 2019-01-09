@@ -40,7 +40,7 @@
                         </StackPane>
                         <HBox alignment="CENTER" fx:id="leftBottomContent" styleClass="left_bottom_box">
                             <children>
-                                <JFXButton>
+                                <JFXButton fx:id="modify">
                                     <tooltip>
                                         <Tooltip text="点击更换头像"></Tooltip>
                                     </tooltip>
