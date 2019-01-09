@@ -10,6 +10,8 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.control.Slider?>
 <?import javafx.scene.control.Tooltip?>
+<?import javafx.scene.canvas.Canvas?>
+<?import javafx.scene.shape.Circle?>
 <BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="cn.navigation.education.changliao.controller.ModifyPortraitController"
@@ -39,9 +41,8 @@
     </top>
     <center>
         <VBox padding="${contentPadding}">
-            <StackPane fx:id="stackPane" styleClass="image_pane">
-
-            </StackPane>
+            <Canvas fx:id="canvas" height="380" width="380">
+            </Canvas>
             <HBox>
                 <HBox spacing="5" alignment="CENTER_LEFT" fx:id="scaleBox">
                     <JFXButton styleClass="action,image_action">

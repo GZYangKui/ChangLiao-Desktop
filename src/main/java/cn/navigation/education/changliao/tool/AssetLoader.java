@@ -9,14 +9,24 @@ import java.util.logging.Logger;
 
 public class AssetLoader {
     /**
-     * 加载图片资源
+     * 加载图片资源,指定图片大小
      *
      * @param fileName
      * @return
      */
-    public static Image loadAssetImage(String fileName, int width, int height) {
+    public static Image loadAssetImage(String fileName, double width, double height) {
         var image = new Image(ClassLoader.getSystemResourceAsStream("assets/" + fileName), width, height, false, true);
         return image;
+    }
+
+    /**
+     * 加载图片，不指定图片大小，原图加载
+     *
+     * @param fileName
+     * @return
+     */
+    public static Image loadAssetImage(String fileName) {
+        return new Image(ClassLoader.getSystemResourceAsStream("assets/" + fileName));
     }
 
     /**

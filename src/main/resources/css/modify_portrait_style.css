@@ -5,13 +5,6 @@
     -fx-font-size: 16px;
 }
 
-.image_pane {
-    -fx-pref-height: 400px;
-    -fx-background-repeat: no-repeat;
-    -fx-background-image: url(/assets/images/header.jpg);
-    -fx-background-size: cover;
-}
-
 #upload {
     -fx-background-color: #0EABE6;
     -fx-text-fill: #FFFF;
@@ -28,4 +21,9 @@
 }
 #container{
     -fx-background-color: #F5F5F5;
+}
+.clip_shape{
+    -fx-fill: black;
+    -fx-stroke: black;
+    -fx-stroke-width: 2px;
 }

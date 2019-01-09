@@ -11,10 +11,9 @@ import cn.navigation.education.changliao.enums.StageComponet;
 
 public class ModifyPortrait extends BaseStage {
     public ModifyPortrait() {
-        super("fxml/modify_portrait_view.fxml",386,618);
+        super("fxml/modify_portrait_view.fxml",400,620);
         removeAction(StageComponet.MAXIMIZATION);
         setStageTitle("更换头像","-fx-font-size:16px;");
-
     }
 
 }
