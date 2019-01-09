@@ -5,21 +5,22 @@ import cn.navigation.education.changliao.handler.TcpHandler;
 import cn.navigation.education.changliao.pages.Login;
 import io.vertx.core.DeploymentOptions;
 import io.vertx.core.Vertx;
-import javafx.application.Platform;
+import io.vertx.core.json.JsonObject;
+import javafx.application.Application;
+import javafx.stage.Stage;
 
+import static cn.navigation.education.changliao.config.Constant.*;
 
-import static cn.navigation.education.changliao.config.Constant.VERTICLE_CONFIG;
-
-public class MainApp {
+public class MainApp extends Application {
 
     public static Vertx vertx = Vertx.vertx();
 
 
-    public MainApp() {
-        //启动javafx线程
-        Platform.startup(Login::new);
-        //部署Vertice
+    @Override
+    public void start(Stage stage) {
+        new Login();
         deploymentVertical();
+
     }
 
     public void deploymentVertical() {
@@ -28,7 +29,15 @@ public class MainApp {
         vertx.deployVerticle(new HttpHandler(), options);
     }
 
-    static public void main(String... args) {
-        new MainApp();
+    @Override
+    public void stop() {
+        var r = new JsonObject();
+        r.put(TYPE, EXIT);
+        vertx.eventBus().send(TcpHandler.class.getName(), r, ar -> {
+            if (ar.succeeded()) {
+                System.exit(1);
+            }
+        });
+
     }
 }

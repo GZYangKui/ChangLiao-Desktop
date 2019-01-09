@@ -18,6 +18,7 @@ import io.vertx.core.net.NetClientOptions;
 import io.vertx.core.net.NetSocket;
 import javafx.application.Platform;
 
+import java.util.Objects;
 import java.util.concurrent.CompletableFuture;
 
 import static cn.navigation.education.changliao.base.BaseContent.BASE_CONTENT;
@@ -38,6 +39,7 @@ public class TcpHandler extends AbstractVerticle {
 
 
         vertx.eventBus().consumer(this.getClass().getName(), ar -> {
+
             var data = (JsonObject) ar.body();
 
             var type = data.getString(TYPE);
@@ -45,6 +47,8 @@ public class TcpHandler extends AbstractVerticle {
                 case USER:
                     userAccount(data, ar);
                     break;
+                case EXIT:
+                    exit(ar);
                 default:
                 case MESSAGE:
                     userMessage(data, ar);
@@ -52,6 +56,13 @@ public class TcpHandler extends AbstractVerticle {
             }
 
         });
+    }
+
+    private void exit(Message<Object> it) {
+        if (Objects.nonNull(socket)) {
+            socket.close();
+        }
+        it.reply("");
     }
 
     private void userMessage(JsonObject data, Message it) {
@@ -130,7 +141,7 @@ public class TcpHandler extends AbstractVerticle {
     private void deliverMessage(JsonObject data) {
 
         var controller = (MainPageController) CONTEXT.get(MainPageController.class.getName());
-        var messageList = (MessageList)BASE_LEFT_CONTENT_MAP.get(MessageList.class.getName());
+        var messageList = (MessageList) BASE_LEFT_CONTENT_MAP.get(MessageList.class.getName());
         //将消息转发到主界面中去
         controller.updateUi(data);
         //将消息更新到消息列表
@@ -155,9 +166,10 @@ public class TcpHandler extends AbstractVerticle {
 
     /**
      * 分发通知
+     *
      * @param data
      */
-    private void deliverNotification(JsonObject data){
+    private void deliverNotification(JsonObject data) {
         var controller = (MainPageController) CONTEXT.get(MainPageController.class.getName());
 
         var mailList = (MailList) BASE_LEFT_CONTENT_MAP.get(MailList.class.getName());
@@ -166,11 +178,11 @@ public class TcpHandler extends AbstractVerticle {
 
         var content = BASE_CONTENT.get(CURRENT_CONTENT);
 
-        if (!(content instanceof NotificationPane)){
+        if (!(content instanceof NotificationPane)) {
             mailList.updateNotification();
             return;
         }
-        var pane = (NotificationPane)content;
+        var pane = (NotificationPane) content;
         pane.updateUi(data);
 
     }

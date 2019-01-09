@@ -37,6 +37,7 @@ public class Constant {
     public static final String FRIEND = "friend";
     public static final String REQUEST = "request";
     public static final String CURRENT_CONTENT = "currentContent";
+    public static final String EXIT ="exit";
 
 
 }

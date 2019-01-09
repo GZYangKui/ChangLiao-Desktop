@@ -6,6 +6,7 @@ import cn.navigation.education.changliao.tool.AssetLoader;
 import cn.navigation.education.changliao.utils.DragUtil;
 import com.jfoenix.controls.JFXButton;
 
+import javafx.application.Platform;
 import javafx.scene.Scene;
 
 import javafx.scene.control.Label;
@@ -20,7 +21,9 @@ import java.util.Optional;
 
 
 /**
+ *
  * 所有窗口的基类
+ *
  */
 
 public abstract class BaseStage extends Stage {
@@ -60,7 +63,6 @@ public abstract class BaseStage extends Stage {
     }
 
     /**
-     *
      * 管理窗口状态
      * pr:最小化、最大化、关闭
      *
@@ -94,7 +96,7 @@ public abstract class BaseStage extends Stage {
         }
         switch (strategy) {
             case EXIT:
-                close.setOnAction(e -> System.exit(1));
+                close.setOnAction(e -> Platform.exit());
                 break;
             default:
                 close.setOnAction(e -> this.close());
@@ -125,7 +127,7 @@ public abstract class BaseStage extends Stage {
      * @param t
      * @param styles
      */
-    protected void setStageTitle(String t, String...styles) {
+    protected void setStageTitle(String t, String... styles) {
         Optional.ofNullable(styles).ifPresent(e -> Arrays.stream(e).forEach(title::setStyle));
         setStageTitle(t);
     }
@@ -136,10 +138,8 @@ public abstract class BaseStage extends Stage {
     }
 
     /**
-     *
      * 移除窗口部件
      * pr:最小化、最大化、关闭
-     *
      */
     protected void removeAction(StageComponet component) {
         switch (component) {
