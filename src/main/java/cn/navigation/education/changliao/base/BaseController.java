@@ -14,7 +14,7 @@ public abstract class BaseController {
     }
 
     //更新ui界面
-    public abstract void updateUi(JsonObject data);
+    public void updateUi(JsonObject data){}
 
     //初始化数据
     public void initData(Object data) {

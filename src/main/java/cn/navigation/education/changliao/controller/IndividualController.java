@@ -4,7 +4,6 @@ import cn.navigation.education.changliao.base.BaseController;
 import cn.navigation.education.changliao.component.PopStar;
 import cn.navigation.education.changliao.model.Position;
 import com.jfoenix.controls.JFXButton;
-import io.vertx.core.json.JsonObject;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.BorderPane;
@@ -61,10 +60,5 @@ public class IndividualController extends BaseController implements Initializabl
             position.setX(e.getScreenX());
             new PopStar(position).show(star.getScene().getWindow());
         });
-    }
-
-    @Override
-    public void updateUi(JsonObject data) {
-
     }
 }
