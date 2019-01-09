@@ -26,7 +26,6 @@ public abstract class BaseContent {
         return container;
     }
 
-    public void updateUi(JsonObject m) {
-    }
+    public void updateUi(JsonObject m) { }
 
 }

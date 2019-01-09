@@ -1,5 +1,6 @@
 package cn.navigation.education.changliao.base;
 
+import cn.navigation.education.changliao.tool.AssetLoader;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXListView;
 import io.vertx.core.json.JsonObject;
@@ -22,7 +23,7 @@ public abstract class BaseLeftContent {
     public HBox topBox;
 
 
-    public static final Map<String,BaseLeftContent> BASE_LEFT_CONTENT_MAP = new WeakHashMap<>();
+    public static final Map<String, BaseLeftContent> BASE_LEFT_CONTENT_MAP = new WeakHashMap<>();
 
     public BaseLeftContent() {
         initView();
@@ -30,16 +31,12 @@ public abstract class BaseLeftContent {
         event();
         loadData();
 
-        BASE_LEFT_CONTENT_MAP.put(this.getClass().getName(),this);
+        BASE_LEFT_CONTENT_MAP.put(this.getClass().getName(), this);
     }
 
     private void initView() {
-        Parent root = null;
-        try {
-            root = FXMLLoader.load(ClassLoader.getSystemResource("fxml/items/message_address_list.fxml"));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        Parent root = AssetLoader.loadLayout("fxml/items/message_address_list.fxml");
+
         container = (BorderPane) root.lookup("#container");
 
         topBox = (HBox) root.lookup("#topBox");
@@ -62,5 +59,7 @@ public abstract class BaseLeftContent {
 
     public void initData(Object data) {
     }
-    public  void updateUi(JsonObject d){ }
+
+    public void updateUi(JsonObject d) {
+    }
 }

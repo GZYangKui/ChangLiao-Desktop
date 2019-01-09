@@ -8,14 +8,12 @@ import cn.navigation.education.changliao.component.MessageList;
 import cn.navigation.education.changliao.component.MorePane;
 import cn.navigation.education.changliao.model.Position;
 import cn.navigation.education.changliao.pages.Individual;
-import cn.navigation.education.changliao.pages.MainPage;
 import com.jfoenix.controls.JFXButton;
 import io.vertx.core.json.JsonArray;
 import io.vertx.core.json.JsonObject;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Pagination;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 import java.net.URL;
@@ -31,14 +29,6 @@ public class MainPageController extends BaseController implements Initializable 
     private VBox leftBoxOne;
     @FXML
     private VBox leftBoxTwo;
-    @FXML
-    private JFXButton minimize;
-    @FXML
-    private JFXButton close;
-    @FXML
-    private JFXButton maximization;
-    @FXML
-    private HBox topBox;
     @FXML
     private Pagination pagination;
     @FXML
@@ -71,9 +61,6 @@ public class MainPageController extends BaseController implements Initializable 
         leftBoxOne.prefHeightProperty().bind(leftBox.heightProperty().multiply(0.7));
         leftBoxTwo.prefHeightProperty().bind(leftBox.heightProperty().multiply(0.3));
         pagination.prefHeightProperty().bind(leftBox.heightProperty());
-        close = (JFXButton) topBox.lookup("#close");
-        minimize = (JFXButton) topBox.lookup("#minimize");
-        maximization = (JFXButton) topBox.lookup("#maximization");
         pagination.getStyleClass().add(Pagination.STYLE_CLASS_BULLET);
         pagination.setPageFactory(e -> lists.get(e).getContent());
         lists.add(new MessageList());
@@ -130,7 +117,6 @@ public class MainPageController extends BaseController implements Initializable 
                 rs.add(data);
             });
 
-            System.out.println(data);
         }
 
     }

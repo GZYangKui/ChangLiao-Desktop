@@ -35,7 +35,12 @@ public abstract class BaseStage extends Stage {
 
     private JFXButton close;
 
-    public BaseStage(String fxml,double width,double height) {
+    private final double WIDTH;
+    private final double HEIGHT;
+
+    public BaseStage(String fxml, double width, double height) {
+        WIDTH = width;
+        HEIGHT = height;
         Parent root = AssetLoader.loadLayout(fxml);
         var topBox = root.lookup("#topBox");
         scene = new Scene(root);
@@ -43,8 +48,8 @@ public abstract class BaseStage extends Stage {
         setTitle("畅聊");
         initStyle(StageStyle.UNDECORATED);
         getIcons().add(AssetLoader.loadAssetImage("images/icon.png", 200, 200));
-        setWidth(width);
-        setHeight(height);
+        setWidth(WIDTH);
+        setHeight(HEIGHT);
         registerEvent((HBox) topBox);
         show();
 
@@ -74,6 +79,7 @@ public abstract class BaseStage extends Stage {
 
     /**
      * 设置窗口关闭模式
+     *
      * @param strategy
      */
     public void setStageCloseStrategy(StageCloseStrategy strategy) {
@@ -100,8 +106,8 @@ public abstract class BaseStage extends Stage {
             setHeight(screen.getVisualBounds().getHeight());
             setWidth(screen.getVisualBounds().getWidth());
         } else {
-            setHeight(600);
-            setWidth(900);
+            setHeight(HEIGHT);
+            setWidth(WIDTH);
         }
         centerOnScreen();
         isMinimize = !isMinimize;

@@ -6,7 +6,6 @@ import cn.navigation.education.changliao.model.Position;
 import com.jfoenix.controls.JFXButton;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
@@ -16,9 +15,6 @@ import java.util.ResourceBundle;
 
 
 public class IndividualController extends BaseController implements Initializable {
-
-    @FXML
-    private BorderPane container;
     @FXML
     private HBox topBox;
     @FXML
