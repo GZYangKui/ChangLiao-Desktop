@@ -20,53 +20,47 @@
         <fx:include source="items/header.fxml" fx:id="topBox"/>
     </top>
     <center>
-        <HBox fx:id="content">
+        <VBox>
             <children>
-                <VBox fx:id="leftBox">
+                <StackPane fx:id="topContent" styleClass="stack_pane">
+                    <JFXButton StackPane.alignment="BOTTOM_RIGHT" text="3486" styleClass="star_number"
+                               fx:id="star" contentDisplay="TOP">
+                        <graphic>
+                            <ImageView>
+                                <image>
+                                    <Image url="@../assets/images/star.png" requestedWidth="30"
+                                           requestedHeight="30"/>
+                                </image>
+                            </ImageView>
+                        </graphic>
+                    </JFXButton>
+                </StackPane>
+                <HBox alignment="CENTER" fx:id="bottomContent" styleClass="left_bottom_box">
                     <children>
-                        <StackPane fx:id="leftTopContent" styleClass="left_stack_pane">
-                            <JFXButton StackPane.alignment="BOTTOM_RIGHT" text="3486" styleClass="star_number"
-                                       fx:id="star" contentDisplay="TOP">
-                                <graphic>
-                                    <ImageView>
-                                        <image>
-                                            <Image url="@../assets/images/star.png" requestedWidth="30"
-                                                   requestedHeight="30"/>
-                                        </image>
-                                    </ImageView>
-                                </graphic>
-                            </JFXButton>
-
-                        </StackPane>
-                        <HBox alignment="CENTER" fx:id="leftBottomContent" styleClass="left_bottom_box">
-                            <children>
-                                <JFXButton fx:id="modify">
-                                    <tooltip>
-                                        <Tooltip text="点击更换头像"></Tooltip>
-                                    </tooltip>
-                                    <clip>
-                                        <Circle radius="25" centerX="35" centerY="35"/>
-                                    </clip>
-                                    <graphic>
-                                        <ImageView>
-                                            <image>
-                                                <Image url="@../assets/images/header.jpg" requestedHeight="70"
-                                                       requestedWidth="70" smooth="true"/>
-                                            </image>
-                                        </ImageView>
-                                    </graphic>
-                                </JFXButton>
-                                <VBox alignment="CENTER_LEFT">
-                                    <Label fx:id="username" text="骄阳似火" styleClass="nickname_style"></Label>
-                                    <Label text="认真你就输了，一直认真你就赢了。" fx:id="sign" styleClass="sign_style"></Label>
-                                </VBox>
-                            </children>
-                        </HBox>
+                        <JFXButton fx:id="modify">
+                            <tooltip>
+                                <Tooltip text="点击更换头像"></Tooltip>
+                            </tooltip>
+                            <clip>
+                                <Circle radius="25" centerX="35" centerY="35"/>
+                            </clip>
+                            <graphic>
+                                <ImageView>
+                                    <image>
+                                        <Image url="@../assets/images/header.jpg" requestedHeight="70"
+                                               requestedWidth="70" smooth="true"/>
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                        </JFXButton>
+                        <VBox alignment="CENTER_LEFT">
+                            <Label fx:id="username" text="骄阳似火" styleClass="nickname_style"></Label>
+                            <Label text="认真你就输了，一直认真你就赢了。" fx:id="sign" styleClass="sign_style"></Label>
+                        </VBox>
                     </children>
-                </VBox>
-                <VBox fx:id="rightBox" styleClass="right_box_style"></VBox>
+                </HBox>
             </children>
-        </HBox>
+        </VBox>
     </center>
 
 

@@ -2,8 +2,6 @@
 
 <?import javafx.scene.layout.*?>
 
-<?import javafx.scene.control.Label?>
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Pagination?>
 <?import java.net.URL?>
 <BorderPane xmlns="http://javafx.com/javafx"
@@ -13,19 +11,7 @@
         <URL value="@../css/login_style.css"></URL>
     </stylesheets>
     <top>
-        <HBox fx:id="topBox_1">
-            <children>
-                <HBox fx:id="titleBox" alignment="CENTER_LEFT">
-                    <padding>
-                        <Insets left="10" top="10"/>
-                    </padding>
-                    <children>
-                        <Label text="畅聊" styleClass="title"/>
-                    </children>
-                </HBox>
-                <fx:include source="items/header.fxml" fx:id="topBox"/>
-            </children>
-        </HBox>
+        <fx:include source="items/header.fxml" fx:id="topBox"/>
     </top>
     <center>
         <Pagination pageCount="2" currentPageIndex="0" fx:id="pagination">

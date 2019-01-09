@@ -5,7 +5,6 @@ import com.jfoenix.controls.JFXButton;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.HBox;
-import javafx.stage.Stage;
 
 import java.net.URL;
 import java.util.Objects;
@@ -22,6 +21,11 @@ public class ModifyPortraitController extends BaseController implements Initiali
     private JFXButton upload;
     @FXML
     private JFXButton cancel;
+    @FXML
+    private HBox scaleBox;
+    @FXML
+    private HBox rotateBox;
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -31,7 +35,8 @@ public class ModifyPortraitController extends BaseController implements Initiali
     }
 
     private void initView() {
-        topBox.getChildren().remove(1);
+        scaleBox.prefWidthProperty().bind(topBox.widthProperty().multiply(0.7));
+        rotateBox.prefWidthProperty().bind(topBox.widthProperty().multiply(0.3));
     }
 
     private void event() {

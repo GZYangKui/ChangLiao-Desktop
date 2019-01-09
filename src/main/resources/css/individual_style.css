@@ -1,7 +1,8 @@
-.left_stack_pane{
+.stack_pane{
     -fx-background-image: url(/assets/images/background.jpg);
     -fx-background-repeat: no-repeat;
     -fx-background-size: cover;
+    -fx-background-position: center;
 }
 .star_number{
     -fx-background-color: transparent;

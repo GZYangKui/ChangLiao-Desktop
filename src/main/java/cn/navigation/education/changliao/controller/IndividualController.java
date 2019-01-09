@@ -3,13 +3,13 @@ package cn.navigation.education.changliao.controller;
 import cn.navigation.education.changliao.base.BaseController;
 import cn.navigation.education.changliao.component.PopStar;
 import cn.navigation.education.changliao.model.Position;
-import cn.navigation.education.changliao.skin.ModifyPortrait;
+import cn.navigation.education.changliao.pages.ModifyPortrait;
 import com.jfoenix.controls.JFXButton;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -19,19 +19,15 @@ public class IndividualController extends BaseController implements Initializabl
     @FXML
     private HBox topBox;
     @FXML
-    private HBox content;
+    private StackPane topContent;
     @FXML
-    private VBox leftBox;
-    @FXML
-    private VBox rightBox;
-    @FXML
-    private StackPane leftTopContent;
-    @FXML
-    private HBox leftBottomContent;
+    private HBox bottomContent;
     @FXML
     private JFXButton star;
     @FXML
     private JFXButton modify;
+    @FXML
+    private BorderPane container;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -41,24 +37,18 @@ public class IndividualController extends BaseController implements Initializabl
     }
 
     private void initView() {
-        //移除最大化
-        topBox.getChildren().remove(1);
-        leftBox.prefWidthProperty().bind(content.widthProperty().multiply(0.5));
-        rightBox.prefWidthProperty().bind(content.widthProperty().multiply(0.5));
-        leftBox.prefHeightProperty().bind(content.heightProperty());
-        rightBox.prefHeightProperty().bind(content.heightProperty());
-        leftTopContent.prefHeightProperty().bind(leftBox.heightProperty().multiply(0.7));
-        leftBottomContent.prefHeightProperty().bind(leftBox.heightProperty().multiply(0.3));
+        topContent.prefHeightProperty().bind(container.heightProperty().multiply(0.7));
+        bottomContent.prefHeightProperty().bind(container.heightProperty().multiply(0.3));
 
     }
 
     private void event() {
-        star.setOnMouseClicked(e->{
+        star.setOnMouseClicked(e -> {
             var position = new Position();
             position.setY(e.getScreenY());
             position.setX(e.getScreenX());
             new PopStar(position).show(star.getScene().getWindow());
         });
-        modify.setOnAction(e->new ModifyPortrait());
+        modify.setOnAction(e -> new ModifyPortrait());
     }
 }

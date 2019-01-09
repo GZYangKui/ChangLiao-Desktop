@@ -9,11 +9,6 @@
 .pagination .pagination-control {
     visibility: hidden;
 }
-
-.title {
-    -fx-font-size: 20px;
-}
-
 .user_information {
     -fx-font-size: 18px;
 }

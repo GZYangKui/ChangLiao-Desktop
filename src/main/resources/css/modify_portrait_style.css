@@ -18,5 +18,14 @@
 }
 
 .image_action {
-    -fx-padding: 2px;
+    -fx-padding: 0px;
+}
+.bottom_box_style{
+    -fx-background-color: #F2F2F7;
+}
+#topBox{
+    -fx-background-color:#8793DD;
+}
+#container{
+    -fx-background-color: #F5F5F5;
 }

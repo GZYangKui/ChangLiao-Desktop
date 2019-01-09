@@ -8,7 +8,8 @@
 <?import java.net.URL?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.image.Image?>
-<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.Tooltip?>
 <BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="cn.navigation.education.changliao.controller.ModifyPortraitController"
@@ -37,20 +38,68 @@
         </VBox>
     </top>
     <center>
-        <VBox>
+        <VBox padding="${contentPadding}">
             <StackPane fx:id="stackPane" styleClass="image_pane">
 
             </StackPane>
             <HBox>
-                <HBox spacing="5" padding="${contentPadding}">
-                    <JFXButton text="-" styleClass="action,image_action"/>
-                    <JFXButton text="+" styleClass="action,image_action"/>
+                <HBox spacing="5" alignment="CENTER_LEFT" fx:id="scaleBox">
+                    <JFXButton styleClass="action,image_action">
+                        <graphic>
+                            <ImageView>
+                                <image>
+                                    <Image url="@../assets/images/narrow.png" requestedHeight="20" requestedWidth="20"/>
+                                </image>
+                            </ImageView>
+                        </graphic>
+                    </JFXButton>
+                    <Slider></Slider>
+                    <JFXButton styleClass="action,image_action">
+                        <graphic>
+                            <ImageView>
+                                <image>
+                                    <Image url="@../assets/images/enlarge.png" requestedHeight="20"
+                                           requestedWidth="20"/>
+                                </image>
+                            </ImageView>
+                        </graphic>
+                    </JFXButton>
+                </HBox>
+                <HBox alignment="CENTER_RIGHT" fx:id="rotateBox">
+                    <children>
+                        <JFXButton>
+                            <tooltip>
+                                <Tooltip text="逆时针旋转"/>
+                            </tooltip>
+                            <graphic>
+                                <ImageView>
+                                    <image>
+                                        <Image url="@../assets/images/counterclockwise.png" requestedWidth="30"
+                                               requestedHeight="30"/>
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                        </JFXButton>
+                        <JFXButton>
+                            <tooltip>
+                                <Tooltip text="顺时针旋转"/>
+                            </tooltip>
+                            <graphic>
+                                <ImageView>
+                                    <image>
+                                        <Image url="@../assets/images/clockwise.png" requestedWidth="30"
+                                               requestedHeight="30"/>
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                        </JFXButton>
+                    </children>
                 </HBox>
             </HBox>
         </VBox>
     </center>
     <bottom>
-        <HBox alignment="CENTER_RIGHT" spacing="10" padding="${contentPadding}">
+        <HBox alignment="CENTER_RIGHT" spacing="10" padding="${contentPadding}" styleClass="bottom_box_style">
             <JFXButton text="确定" styleClass="action" fx:id="upload"/>
             <JFXButton text="取消" styleClass="action" fx:id="cancel"/>
         </HBox>

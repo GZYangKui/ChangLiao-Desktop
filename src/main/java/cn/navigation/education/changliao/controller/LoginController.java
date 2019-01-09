@@ -7,8 +7,8 @@ import cn.navigation.education.changliao.tool.AssetLoader;
 import cn.navigation.education.changliao.utils.StringUtils;
 import com.jfoenix.controls.JFXButton;
 import io.vertx.core.json.JsonObject;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
-import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
@@ -17,8 +17,6 @@ import javafx.scene.control.Pagination;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
-import javafx.stage.WindowEvent;
 import org.controlsfx.control.Notifications;
 
 import java.net.URL;
@@ -29,17 +27,7 @@ import static cn.navigation.education.changliao.MainApp.vertx;
 
 public class LoginController extends BaseController implements Initializable {
     @FXML
-    private HBox topBox_1;
-    @FXML
-    private HBox titleBox;
-    @FXML
-    private HBox topBox;
-    @FXML
     private Pagination pagination;
-
-    private JFXButton close;
-    private JFXButton minimize;
-
     private BorderPane QRCodeLoginPane;
     private BorderPane accountLogin;
     private Hyperlink switchLogin;
@@ -54,12 +42,6 @@ public class LoginController extends BaseController implements Initializable {
     }
 
     public void initView() {
-        titleBox.prefWidthProperty().bind(topBox_1.widthProperty().multiply(0.2));
-        topBox.prefWidthProperty().bind(topBox_1.widthProperty().multiply(0.8));
-        //移除最大化图标
-        topBox.getChildren().remove(1);
-        close = (JFXButton) topBox.lookup("#close");
-        minimize = (JFXButton) topBox.lookup("#minimize");
         QRCodeLoginPane = (BorderPane) AssetLoader.loadLayout("fxml/items/qr_code_login.fxml").lookup("#container");
         accountLogin = (BorderPane) AssetLoader.loadLayout("fxml/items/account_login.fxml").lookup("#container");
         password = (PasswordField) accountLogin.lookup("#password");
@@ -118,8 +100,7 @@ public class LoginController extends BaseController implements Initializable {
             //储存当前账号信息
             CURRENT_ACCOUNT.put(ID, data.getString(ID) == null ? data.getString(NICKNAME) : data.getString(ID));
             CURRENT_ACCOUNT.put(NICKNAME, data.getString(NICKNAME));
-            //关闭窗口
-            close.getScene().getWindow().fireEvent(new Event(WindowEvent.WINDOW_CLOSE_REQUEST));
+            Platform.runLater(loginAction.getScene().getWindow()::hide);
             //好友列表
             var friend = new JsonObject().put(FRIENDS, data.getJsonArray(FRIENDS));
             //跳转到主页面

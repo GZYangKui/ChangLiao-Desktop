@@ -1,64 +1,72 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.image.Image?>
-<?import javafx.geometry.Insets?>
 <HBox xmlns="http://javafx.com/javafx"
-      xmlns:fx="http://javafx.com/fxml"
-      alignment="CENTER_RIGHT"
-      spacing="10"
-      style="-fx-background-color: #F5F5F5">
+      xmlns:fx="http://javafx.com/fxml">
     <padding>
-        <Insets right="10" top="5"/>
+        <Insets top="5" bottom="5" left="10" right="10"/>
     </padding>
     <children>
-        <JFXButton fx:id="minimize">
-            <padding>
-                <Insets right="0" left="0" top="0" bottom="0"/>
-            </padding>
-            <tooltip>
-                <Tooltip text="最小化"/>
-            </tooltip>
-            <graphic>
-                <ImageView>
-                    <image>
-                        <Image url="@../../assets/images/miniziner.png" requestedWidth="20" requestedHeight="20"/>
-                    </image>
-                </ImageView>
-            </graphic>
-        </JFXButton>
-        <JFXButton fx:id="maximization">
-            <padding>
-                <Insets right="0" left="0" top="0" bottom="0"/>
-            </padding>
-            <tooltip>
-                <Tooltip text="最大化"/>
-            </tooltip>
-            <graphic>
-                <ImageView>
-                    <image>
-                        <Image url="@../../assets/images/maxmizine.png" requestedWidth="20" requestedHeight="20"/>
-                    </image>
-                </ImageView>
-            </graphic>
-        </JFXButton>
-        <JFXButton fx:id="close">
-            <padding>
-                <Insets right="0" left="0" top="0" bottom="0"/>
-            </padding>
-            <tooltip>
-                <Tooltip text="关闭"/>
-            </tooltip>
-            <graphic>
-                <ImageView>
-                    <image>
-                        <Image url="@../../assets/images/close.png" requestedWidth="20" requestedHeight="20"/>
-                    </image>
-                </ImageView>
-            </graphic>
-        </JFXButton>
+        <HBox fx:id="topLeftBox" alignment="CENTER_LEFT">
+            <children>
+                <Label fx:id="title"/>
+            </children>
+        </HBox>
+        <HBox fx:id="topRightBox" alignment="CENTER_RIGHT" spacing="10">
+            <children>
+                <JFXButton fx:id="minimize">
+                    <padding>
+                        <Insets right="0" left="0" top="0" bottom="0"/>
+                    </padding>
+                    <tooltip>
+                        <Tooltip text="最小化"/>
+                    </tooltip>
+                    <graphic>
+                        <ImageView>
+                            <image>
+                                <Image url="@../../assets/images/miniziner.png" requestedWidth="20"
+                                       requestedHeight="20"/>
+                            </image>
+                        </ImageView>
+                    </graphic>
+                </JFXButton>
+                <JFXButton fx:id="maximization">
+                    <padding>
+                        <Insets right="0" left="0" top="0" bottom="0"/>
+                    </padding>
+                    <tooltip>
+                        <Tooltip text="最大化"/>
+                    </tooltip>
+                    <graphic>
+                        <ImageView>
+                            <image>
+                                <Image url="@../../assets/images/maxmizine.png" requestedWidth="20"
+                                       requestedHeight="20"/>
+                            </image>
+                        </ImageView>
+                    </graphic>
+                </JFXButton>
+                <JFXButton fx:id="close">
+                    <padding>
+                        <Insets right="0" left="0" top="0" bottom="0"/>
+                    </padding>
+                    <tooltip>
+                        <Tooltip text="关闭"/>
+                    </tooltip>
+                    <graphic>
+                        <ImageView>
+                            <image>
+                                <Image url="@../../assets/images/close.png" requestedWidth="20" requestedHeight="20"/>
+                            </image>
+                        </ImageView>
+                    </graphic>
+                </JFXButton>
+            </children>
+        </HBox>
     </children>
 </HBox>

@@ -1,8 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
@@ -15,15 +11,8 @@
             fx:controller="cn.navigation.education.changliao.controller.BackupController"
             prefHeight="400.0" prefWidth="600.0">
     <top>
-        <HBox fx:id="topBox">
-            <HBox fx:id="topBoxOne" alignment="CENTER_LEFT">
-                <padding>
-                    <Insets top="10" bottom="10" left="10" right="10"/>
-                </padding>
-                <Label text="备份与恢复"></Label>
-            </HBox>
-            <fx:include source="items/header.fxml" fx:id="topBoxTwo"/>
-        </HBox>
+        <fx:include source="items/header.fxml" fx:id="topBox"/>
+
     </top>
     <center>
         <HBox alignment="CENTER" spacing="40">
