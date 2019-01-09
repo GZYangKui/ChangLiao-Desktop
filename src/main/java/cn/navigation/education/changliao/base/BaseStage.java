@@ -6,7 +6,6 @@ import cn.navigation.education.changliao.tool.AssetLoader;
 import cn.navigation.education.changliao.utils.DragUtil;
 import com.jfoenix.controls.JFXButton;
 
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 
 import javafx.scene.control.Label;
@@ -39,7 +38,7 @@ public abstract class BaseStage extends Stage {
         WIDTH = width;
         HEIGHT = height;
 
-        Parent root = AssetLoader.loadLayout(fxml);
+        var root = AssetLoader.loadLayout(fxml);
 
         var topBox = (HBox) root.lookup("#topBox");
         var topLeftBox = (HBox) topBox.lookup("#topLeftBox");
@@ -55,18 +54,20 @@ public abstract class BaseStage extends Stage {
         getIcons().add(AssetLoader.loadAssetImage("images/icon.png", 200, 200));
         setWidth(WIDTH);
         setHeight(HEIGHT);
-        registerEvent(topBox);
+        registerWindowEvent(topBox);
         show();
 
     }
 
     /**
+     *
      * 管理窗口状态
      * pr:最小化、最大化、关闭
      *
      * @param topBox
      */
-    private void registerEvent(HBox topBox) {
+    private void registerWindowEvent(HBox topBox) {
+
         close = (JFXButton) topBox.lookup("#close");
         var minimize = (JFXButton) topBox.lookup("#minimize");
         var maximization = (JFXButton) topBox.lookup("#maximization");
@@ -135,7 +136,10 @@ public abstract class BaseStage extends Stage {
     }
 
     /**
+     *
      * 移除窗口部件
+     * pr:最小化、最大化、关闭
+     *
      */
     protected void removeAction(StageComponet component) {
         switch (component) {
@@ -149,7 +153,6 @@ public abstract class BaseStage extends Stage {
                 topRightBox.getChildren().remove(2);
                 break;
             default:
-
         }
 
     }
