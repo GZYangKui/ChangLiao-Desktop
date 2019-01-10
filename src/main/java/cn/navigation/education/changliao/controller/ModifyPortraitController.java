@@ -1,15 +1,19 @@
 package cn.navigation.education.changliao.controller;
 
 import cn.navigation.education.changliao.base.BaseController;
+import cn.navigation.education.changliao.pages.PreviewPicture;
 import cn.navigation.education.changliao.tool.AssetLoader;
 import com.jfoenix.controls.JFXButton;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Cursor;
+import javafx.scene.SnapshotParameters;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Slider;
 import javafx.scene.image.Image;
+import javafx.scene.image.WritableImage;
 import javafx.scene.layout.HBox;
 
 import java.math.BigDecimal;
@@ -69,6 +73,7 @@ public class ModifyPortraitController extends BaseController implements Initiali
     private void initView() {
         scaleBox.prefWidthProperty().bind(topBox.widthProperty().multiply(0.7));
         rotateBox.prefWidthProperty().bind(topBox.widthProperty().multiply(0.3));
+        canvas.setCursor(Cursor.HAND);
         gc = canvas.getGraphicsContext2D();
         drawBg(AssetLoader.loadAssetImage(TEST_PATH), canvas.getWidth(), canvas.getHeight());
     }
@@ -77,10 +82,10 @@ public class ModifyPortraitController extends BaseController implements Initiali
         //清空画布
         gc.clearRect(0.0D, 0.0D, canvas.getWidth(), canvas.getHeight());
         //绘制图片
-        gc.drawImage(image, 0.0, 0.00, width, height);
+        gc.drawImage(image, 0.0D, 0.00D, width, height);
         //设置画笔粗细
         gc.setLineWidth(1);
-        gc.strokeOval(0.0, 0.0, canvas.getWidth(), canvas.getHeight());
+        gc.strokeOval(0.0D, 0.0D, canvas.getWidth(), canvas.getHeight());
 
     }
 
@@ -95,6 +100,7 @@ public class ModifyPortraitController extends BaseController implements Initiali
         narrow.setOnAction(this::narrowImage);
         clockwise.setOnAction(this::rotateImage);
         counterClockwise.setOnAction(this::rotateImage);
+        upload.setOnAction(this::saveLocal);
     }
 
 
@@ -150,16 +156,14 @@ public class ModifyPortraitController extends BaseController implements Initiali
     }
 
     /**
-     *
      * 保留两位小数
+     *
      * @param x
      * @return
-     *
      */
     private double getRoundValue(double x) {
         var bg = new BigDecimal(x);
         var newValue = bg.setScale(2, RoundingMode.HALF_DOWN).doubleValue();
-        System.out.println(newValue);
         return newValue;
     }
 
@@ -176,6 +180,19 @@ public class ModifyPortraitController extends BaseController implements Initiali
             return;
         }
         slider.setValue(slider.getValue() + offset);
+    }
+
+    /**
+     * 保存头像到本地
+     */
+    private void saveLocal(ActionEvent e) {
+
+        var image = new WritableImage((int) canvas.getWidth(), (int) canvas.getHeight());
+
+        SnapshotParameters params = new SnapshotParameters();
+        canvas.snapshot(params, image);
+
+        new PreviewPicture(image).show();
 
     }
 }
