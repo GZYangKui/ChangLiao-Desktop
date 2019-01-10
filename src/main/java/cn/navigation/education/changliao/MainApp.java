@@ -5,7 +5,6 @@ import cn.navigation.education.changliao.handler.TcpHandler;
 import cn.navigation.education.changliao.pages.Login;
 import io.vertx.core.DeploymentOptions;
 import io.vertx.core.Vertx;
-import io.vertx.core.json.JsonObject;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
@@ -31,13 +30,14 @@ public class MainApp extends Application {
 
     @Override
     public void stop() {
-        var r = new JsonObject();
-        r.put(TYPE, EXIT);
-        vertx.eventBus().send(TcpHandler.class.getName(), r, ar -> {
-            if (ar.succeeded()) {
-                System.exit(1);
-            }
-        });
+//        var r = new JsonObject();
+//        r.put(TYPE, EXIT);
+//        vertx.eventBus().send(TcpHandler.class.getName(), r, ar -> {
+//            if (ar.succeeded()) {
+//                System.exit(1);
+//            }
+//        });
+        System.exit(1);
 
     }
 }

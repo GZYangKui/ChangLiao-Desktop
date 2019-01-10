@@ -17,6 +17,7 @@ public class AssetLoader {
     public static Image loadAssetImage(String fileName, double width, double height) {
         var image = new Image(ClassLoader.getSystemResourceAsStream("assets/" + fileName), width, height, false, true);
         return image;
+
     }
 
     /**
@@ -33,12 +34,14 @@ public class AssetLoader {
      * 加载布局文件
      */
     public static Parent loadLayout(String url) {
+        long s = System.currentTimeMillis();
         Parent root = null;
         try {
             root = FXMLLoader.load(ClassLoader.getSystemResource(url));
         } catch (IOException e) {
             e.printStackTrace();
         }
+        System.out.println("加载" + url + "耗时:" + (System.currentTimeMillis() - s));
         return root;
     }
 }
