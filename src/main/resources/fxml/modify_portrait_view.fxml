@@ -44,7 +44,7 @@
             </Canvas>
             <HBox>
                 <HBox spacing="5" alignment="CENTER_LEFT" fx:id="scaleBox">
-                    <JFXButton styleClass="action,image_action">
+                    <JFXButton styleClass="action,image_action" fx:id="narrow">
                         <graphic>
                             <ImageView>
                                 <image>
@@ -53,8 +53,8 @@
                             </ImageView>
                         </graphic>
                     </JFXButton>
-                    <Slider></Slider>
-                    <JFXButton styleClass="action,image_action">
+                    <Slider fx:id="slider" min="0.0D" max="1.0D"></Slider>
+                    <JFXButton styleClass="action,image_action" fx:id="enLarge">
                         <graphic>
                             <ImageView>
                                 <image>
@@ -67,7 +67,7 @@
                 </HBox>
                 <HBox alignment="CENTER_RIGHT" fx:id="rotateBox">
                     <children>
-                        <JFXButton>
+                        <JFXButton fx:id="counterClockwise">
                             <tooltip>
                                 <Tooltip text="逆时针旋转"/>
                             </tooltip>
@@ -80,7 +80,7 @@
                                 </ImageView>
                             </graphic>
                         </JFXButton>
-                        <JFXButton>
+                        <JFXButton fx:id="clockwise">
                             <tooltip>
                                 <Tooltip text="顺时针旋转"/>
                             </tooltip>
