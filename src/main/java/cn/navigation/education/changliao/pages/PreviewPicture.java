@@ -59,8 +59,6 @@ public class PreviewPicture extends Stage {
         container.setTop(topBox);
         container.setCenter(imageView);
         container.setBottom(bottomBox);
-        topBox.setStyle("-fx-background:transparent;");
-        bottomBox.setStyle("-fx-background:transparent;");
 
 
         var scene = new Scene(container, 600, 500);
