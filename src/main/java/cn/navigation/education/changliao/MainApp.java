@@ -5,7 +5,6 @@ import cn.navigation.education.changliao.handler.TcpHandler;
 import cn.navigation.education.changliao.pages.Login;
 import io.vertx.core.DeploymentOptions;
 import io.vertx.core.Vertx;
-import io.vertx.core.json.JsonObject;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
@@ -31,6 +30,6 @@ public class MainApp extends Application {
 
     @Override
     public void stop() {
-
+        System.exit(1);
     }
 }
