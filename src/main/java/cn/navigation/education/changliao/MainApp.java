@@ -31,13 +31,6 @@ public class MainApp extends Application {
 
     @Override
     public void stop() {
-        var r = new JsonObject();
-        r.put(TYPE, EXIT);
-        vertx.eventBus().send(TcpHandler.class.getName(), r, ar -> {
-            if (ar.succeeded()) {
-                System.exit(1);
-            }
-        });
 
     }
 }
